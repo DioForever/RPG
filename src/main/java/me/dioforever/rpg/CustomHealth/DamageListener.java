@@ -15,7 +15,7 @@ import java.util.List;
 
 public class DamageListener implements Listener {
     static Main plugin;
-    static Toughness toughness;
+
 
 
 
@@ -28,7 +28,7 @@ public class DamageListener implements Listener {
     public void onDamage(EntityDamageEvent e){
             if(e.getEntity() instanceof Player) {
                 if(e.getCause()==EntityDamageEvent.DamageCause.ENTITY_ATTACK) {
-                    return
+                    return;
                 }
 
                 Player p = (Player) e.getEntity();
@@ -36,15 +36,12 @@ public class DamageListener implements Listener {
                 double damage = e.getDamage()*5;
                 int MAXHP = CCLeft.get().getInt(nick+".MAXHP");
                 int HP = CCLeft.get().getInt(nick+".HP");
-                if(toughness.Thoughness(nick)!=null){
-                if(toughness.Thoughness(nick)&& damage<=5){
+                if(Toughness.Thoughness(nick)&& damage<=5){
                     //The player Thoughness and damage is smaller or equal to 5
                     e.setDamage(0);
-                    //Temporary text
-                    p.sendMessage("Thoughness has taken effect");
                     return;
                 }
-                }
+
                 double  percent = damage/MAXHP*100;
                 double FinalDamage = damage;
                 CCLeft.get().set(nick+".HP",HP-damage);
@@ -77,15 +74,11 @@ public class DamageListener implements Listener {
             }
 
 
-     
-            if(toughness.Thoughness(nick)!=null){
-            if(toughness.Thoughness(nick) && e.getDamage()*5+strength<=5){
+
+            if(Toughness.Thoughness(nick) && e.getDamage()*5+strength<=5){
                 //The player Thoughness and damage is smaller or equal to 5
                 e.setDamage(0);
-                //Temporary text
-                p.sendMessage("Thoughness has taken effect");
                 return;
-            }
             }
 
                     double damage = e.getDamage()*5;

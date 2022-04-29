@@ -1,9 +1,6 @@
 package me.dioforever.rpg.Menu;
 
-import me.dioforever.rpg.files.CCAchieved;
-import me.dioforever.rpg.files.CCPlayerInfo;
-import me.dioforever.rpg.files.CCSkills;
-import me.dioforever.rpg.files.CCStats;
+import me.dioforever.rpg.files.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -202,21 +199,32 @@ public class MenuListener implements Listener {
             //Health
             int HealthStat = CCStats.get().getInt(nick+".Health");
             int BHealthStat = CCStats.get().getInt(nick+".BHealth");
+            int THealthStat = CCStats.get().getInt(nick+".THealth");
             Health = new ItemStack(Material.RED_WOOL);
             ItemMeta HealthMeta = Health.getItemMeta();
-            HealthMeta.setDisplayName(color("&l&4[&cHealth&4]&c "+HealthStat+" &4(+"+BHealthStat+"&4)"));
+            if(THealthStat>=0){
+                HealthMeta.setDisplayName(color("&l&4[&cHealth&4]&c "+HealthStat+" &4(+"+BHealthStat+"&4) " +"&4(+"+THealthStat+"&4)"));
+            }else{
+                HealthMeta.setDisplayName(color("&l&4[&cHealth&4]&c "+HealthStat+" &4(+"+BHealthStat+"&4) " +"&4("+THealthStat+"&4)"));
+            }
             HealthMeta.setLore(Arrays.asList(
                     color("&c - Increases your Health"),
                     color("&c + 1HP per 1 point invested"),
-                    color("&c = "+((CCPlayerInfo.get().getInt(nick+".MAXHP")-100))+"&cHP")));
+                    color("&c = "+((CCLeft.get().getInt(nick+".MAXHP")-100))+"&cHP")));
             Health.setItemMeta(HealthMeta);
 
             double DefenseStat = CCStats.get().getInt(nick+".Defense");
             double BDefenseStat = CCStats.get().getInt(nick+".BDefense");
+            double TDefenseStat = CCStats.get().getInt(nick+".TDefense");
             //Defense
             Defense = new ItemStack(Material.PURPLE_WOOL);
             ItemMeta DefenseMeta = Defense.getItemMeta();
-            DefenseMeta.setDisplayName(color("&l&5[&dDefense&5]&d "+DefenseStat+" &5(&d+"+BDefenseStat+"&5)"));
+            if(TDefenseStat>=0){
+                DefenseMeta.setDisplayName(color("&l&5[&dDefense&5]&d "+DefenseStat+" &5(&d+"+BDefenseStat+"&5)"+" &5(&d+"+TDefenseStat+"&5)"));
+            }else{
+                DefenseMeta.setDisplayName(color("&l&5[&dDefense&5]&d "+DefenseStat+" &5(&d+"+BDefenseStat+"&5)"+" &5(&d"+TDefenseStat+"&5)"));
+            }
+
             DefenseMeta.setLore(Arrays.asList(
                     color("&d - Increases your Defense"),
                     color("&d + 5HP less damage per 10 points invested"),
@@ -226,10 +234,16 @@ public class MenuListener implements Listener {
 
             double StrengthStat = CCStats.get().getInt(nick+".Strength");
             double BStrengthStat = CCStats.get().getInt(nick+".BStrength");
+            double TStrengthStat = CCStats.get().getInt(nick+".TStrength");
             //Strength
             Strength = new ItemStack(Material.RED_CONCRETE);
             ItemMeta StrengthMeta = Strength.getItemMeta();
-            StrengthMeta.setDisplayName(color("&l&4[&cStrength&4]&c "+StrengthStat+"&4 (&c+"+BStrengthStat+"&4)"));
+            if(TStrengthStat>=0){
+                StrengthMeta.setDisplayName(color("&l&4[&cStrength&4]&c "+StrengthStat+"&4 (&c+"+BStrengthStat+"&4)"+ "&4 (&c+"+TStrengthStat+"&4)"));
+            }else{
+                StrengthMeta.setDisplayName(color("&l&4[&cStrength&4]&c "+StrengthStat+"&4 (&c+"+BStrengthStat+"&4)"+ "&4 (&c"+TStrengthStat+"&4)"));
+            }
+
             StrengthMeta.setLore(Arrays.asList(
                     color("&c - Increases your Strength"),
                     color("&c + 5HP more damage per 10 points invested"),
@@ -239,10 +253,15 @@ public class MenuListener implements Listener {
 
             double AgilityStat = CCStats.get().getDouble(nick+".Agility");
             double BAgilityStat = CCStats.get().getDouble(nick+".BAgility");
+            double TAgilityStat = CCStats.get().getDouble(nick+".TAgility");
             //Agility
             Agility = new ItemStack(Material.GOLD_BLOCK);
             ItemMeta AgilityMeta = Agility.getItemMeta();
-            AgilityMeta.setDisplayName(color("&l&6[&eAgility&6]&e "+AgilityStat+" &6(&e+"+BAgilityStat+"&6)"));
+            if(TAgilityStat>=0){
+                AgilityMeta.setDisplayName(color("&l&6[&eAgility&6]&e "+AgilityStat+" &6(&e+"+BAgilityStat+"&6)" +" &6(&e+"+BAgilityStat+"&6)"));
+            }else{
+                AgilityMeta.setDisplayName(color("&l&6[&eAgility&6]&e "+AgilityStat+" &6(&e+"+BAgilityStat+"&6)" +" &6(&e"+BAgilityStat+"&6)"));
+            }
             AgilityMeta.setLore(Arrays.asList(
                     color("&e - Increases your Agility"),
                     color("&e + 0.01 speed per 5 points invested"),
@@ -254,10 +273,15 @@ public class MenuListener implements Listener {
 
             int IntelStat = CCStats.get().getInt(nick+".Intelligence");
             int BIntelStat = CCStats.get().getInt(nick+".BIntelligence");
+            int TIntelStat = CCStats.get().getInt(nick+".TIntelligence");
             //Intelligence
             Intelligence = new ItemStack(Material.CYAN_WOOL);
             ItemMeta IntelligenceMeta = Intelligence.getItemMeta();
-            IntelligenceMeta.setDisplayName(color("&l&3[&9Intelligence&3]&9 "+IntelStat+" &3(&9+"+BIntelStat+"&3)"));
+            if(TIntelStat>=0){
+                IntelligenceMeta.setDisplayName(color("&l&3[&9Intelligence&3]&9 "+IntelStat+" &3(&9+"+BIntelStat+"&3)"+" &3(&9+"+TIntelStat+"&3)"));
+            }else{
+                IntelligenceMeta.setDisplayName(color("&l&3[&9Intelligence&3]&9 "+IntelStat+" &3(&9+"+BIntelStat+"&3)"+" &3(&9"+TIntelStat+"&3)"));
+            }
             IntelligenceMeta.setLore(Arrays.asList(
                     color("&3 - Increases your Mana"),
                     color("&3 + 5MP per 1 point invested"),
@@ -266,10 +290,15 @@ public class MenuListener implements Listener {
 
             int WisdomStat = CCStats.get().getInt(nick+".Wisdom");
             int BWisdomStat = CCStats.get().getInt(nick+".BWisdom");
+            int TWisdomStat = CCStats.get().getInt(nick+".TWisdom");
             //Wisdom
             Wisdom = new ItemStack(Material.LIGHT_BLUE_WOOL);
             ItemMeta WisdomMeta = Wisdom.getItemMeta();
-            WisdomMeta.setDisplayName(color("&l&9[&bWisdom&9]&b "+WisdomStat+" &9(&b+"+BWisdomStat+"&9)"));
+            if(TWisdomStat>=0){
+                WisdomMeta.setDisplayName(color("&l&9[&bWisdom&9]&b "+WisdomStat+" &9(&b+"+BWisdomStat+"&9)"+" &9(&b+"+TWisdomStat+"&9)"));
+            }else{
+                WisdomMeta.setDisplayName(color("&l&9[&bWisdom&9]&b "+WisdomStat+" &9(&b+"+BWisdomStat+"&9)"+" &9(&b"+TWisdomStat+"&9)"));
+            }
 
             WisdomMeta.setLore(Arrays.asList(
                     color("&9 - Increases your Mana Regeneration"),
@@ -283,11 +312,15 @@ public class MenuListener implements Listener {
 
             int StaminaStat = CCStats.get().getInt(nick+".Stamina");
             int BStaminaStat = CCStats.get().getInt(nick+".BStamina");
+            int TStaminaStat = CCStats.get().getInt(nick+".TStamina");
             //Stamina
             Stamina = new ItemStack(Material.ORANGE_WOOL);
             ItemMeta StaminaMeta = Stamina.getItemMeta();
-            StaminaMeta.setDisplayName(color("&l&6[&eStamina&6]&e "+StaminaStat+" &6(&e+"+BStaminaStat+"&6)"));
-            StaminaMeta.setLore(Arrays.asList(
+            if(TStaminaStat>=0){
+                StaminaMeta.setDisplayName(color("&l&6[&eStamina&6]&e "+StaminaStat+" &6(&e+"+BStaminaStat+"&6)"+" &6(&e+"+TStaminaStat+"&6)"));
+            }else{
+                StaminaMeta.setDisplayName(color("&l&6[&eStamina&6]&e "+StaminaStat+" &6(&e+"+BStaminaStat+"&6)"+" &6(&e"+TStaminaStat+"&6)"));
+            }StaminaMeta.setLore(Arrays.asList(
                     color("&e - Increases your Stamina"),
                     color("&e + 5SP per 1 point invested"),
                     color("&e = &6"+(StaminaStat*5)+"&e (&6+"+BStaminaStat+"&e)"+"&eSP more"),
@@ -296,10 +329,15 @@ public class MenuListener implements Listener {
 
             double LuckStat = CCStats.get().getDouble(nick+".Luck");
             double BLuckStat = CCStats.get().getDouble(nick+".BLuck");
-            //Luck
+            double TLuckStat = CCStats.get().getDouble(nick+".TLuck");
+            //LuckSS
             Luck = new ItemStack(Material.EMERALD_BLOCK);
             ItemMeta LuckMeta = Luck.getItemMeta();
-            LuckMeta.setDisplayName(color("&l&2[&aLuck&2]&a "+LuckStat+" &a(&2+"+BLuckStat+"&a)"));
+            if(TLuckStat>=0){
+                LuckMeta.setDisplayName(color("&l&2[&aLuck&2]&a "+LuckStat+" &a(&2+"+BLuckStat+"&a)" + " &a(&2+"+TLuckStat+"&a)"));
+            }else{
+                LuckMeta.setDisplayName(color("&l&2[&aLuck&2]&a "+LuckStat+" &a(&2+"+BLuckStat+"&a)" + " &a(&2"+TLuckStat+"&a)"));
+            }
             LuckMeta.setLore(Arrays.asList(
                     color("&a - Increases your luck"),
                     color("&a + 0.1% per 1 point invested"),

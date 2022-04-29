@@ -11,7 +11,7 @@ import java.util.List;
 public class Toughness {
 
     //Every Damage related skill has to be in the me.dioforever.rpg.CustomHealth.DamageListener to work
-    public boolean Thoughness(String nick){
+    public static boolean Thoughness(String nick){
         List skills = CCSkills.get().getList(nick+".Skills.Rare.Name");
         if(skills.contains("Toughness")){
             return true;
