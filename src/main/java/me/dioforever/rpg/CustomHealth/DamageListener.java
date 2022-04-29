@@ -18,12 +18,6 @@ public class DamageListener implements Listener {
 
 
 
-
-
-    //public DamageListener(Main main){
-    //    plugin = main;
-    //}
-
     @EventHandler
     public void onDamage(EntityDamageEvent e){
             if(e.getEntity() instanceof Player) {

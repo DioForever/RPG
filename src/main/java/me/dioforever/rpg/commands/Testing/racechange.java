@@ -27,6 +27,194 @@ public class racechange implements CommandExecutor {
                 int Agility = CCStats.get().getInt(nick+".Agility");
                 int Strength = CCStats.get().getInt(nick+".Strength");
                 int Wisdom = CCStats.get().getInt(nick+".Wisdom");
+                String raceHad = CCPlayerInfo.get().getString(nick+".Race");
+                List curProfL = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Have");
+                List nedProfL = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Need");
+                List Ranks = CCSkills.get().getList(nick + ".Skills.Rare.Rank");
+                List skills = CCSkills.get().getList(nick + ".Skills.Rare.Name");
+                switch (raceHad){
+                    case"Human":
+                        if (CCSkills.get().getList(nick + ".Skills.Rare.Name").contains("Goddess' Blessing")) {
+
+                            List RarSkills = CCSkills.get().getList(nick + ".Skills.Rare.Name");
+                            List RarDesc = CCSkills.get().getList(nick + ".Skills.Rare.Description");
+                            List RarRanks = CCSkills.get().getList(nick + ".Skills.Rare.Rank");
+                            List RarProfHave = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Have");
+                            List RarProfNeed = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Need");
+                            List RarType = CCSkills.get().getList(nick + ".Skills.Rare.Type");
+                            double MXP = CCPlayerInfo.get().getInt(nick+".MXP");
+                            CCPlayerInfo.get().set(nick+".MXP",MXP-0.05);
+                            CCPlayerInfo.save();
+
+                            int i = RarSkills.indexOf("Goddess' Blessing");
+                            for (int j = 0; j < RarDesc.size(); j++) {
+                                if (RarDesc.get(j) == "however its Ungrowable skill") {
+                                    RarDesc.remove(j);
+                                    RarDesc.remove(j - 1);
+                                    RarDesc.remove(j - 2);
+                                }
+                            }
+                            RarSkills.remove(i);
+                            RarRanks.remove(i);
+                            RarProfHave.remove(i);
+                            RarProfNeed.remove(i);
+                            RarType.remove(i);
+
+
+                            CCSkills.get().set(nick + ".Skills.Rare.Name", RarSkills);
+                            CCSkills.get().set(nick + ".Skills.Rare.Description", RarDesc);
+                            CCSkills.get().set(nick + ".Skills.Rare.Rank", RarRanks);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Have", RarProfHave);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Need", RarProfNeed);
+                            CCSkills.get().set(nick + ".Skills.Rare.Type", RarType);
+                            CCSkills.save();
+                        }
+                        break;
+                    case"Elf":
+                        if (CCSkills.get().getList(nick + ".Skills.Rare.Name").contains("Friend of Nature")) {
+
+                            List RarSkills = CCSkills.get().getList(nick + ".Skills.Rare.Name");
+                            List RarDesc = CCSkills.get().getList(nick + ".Skills.Rare.Description");
+                            List RarRanks = CCSkills.get().getList(nick + ".Skills.Rare.Rank");
+                            List RarProfHave = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Have");
+                            List RarProfNeed = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Need");
+                            List RarType = CCSkills.get().getList(nick + ".Skills.Rare.Type");
+
+                            int i = RarSkills.indexOf("Friend of Nature");
+                            for (int j = 0; j < RarDesc.size(); j++) {
+                                if (RarDesc.get(j) == "with 5 min cooldown") {
+                                    RarDesc.remove(j);
+                                    RarDesc.remove(j - 1);
+                                    RarDesc.remove(j - 2);
+                                    RarDesc.remove(j - 3);
+                                    RarDesc.remove(j - 4);
+                                }
+                            }
+                            RarSkills.remove(i);
+                            RarRanks.remove(i);
+                            RarProfHave.remove(i);
+                            RarProfNeed.remove(i);
+                            RarType.remove(i);
+
+
+                            CCSkills.get().set(nick + ".Skills.Rare.Name", RarSkills);
+                            CCSkills.get().set(nick + ".Skills.Rare.Description", RarDesc);
+                            CCSkills.get().set(nick + ".Skills.Rare.Rank", RarRanks);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Have", RarProfHave);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Need", RarProfNeed);
+                            CCSkills.get().set(nick + ".Skills.Rare.Type", RarType);
+                            CCSkills.save();
+                        }
+                        break;
+                    case"Dwarf":
+                        if (CCSkills.get().getList(nick + ".Skills.Rare.Name").contains("Toughness")) {
+
+                            List RarSkills = CCSkills.get().getList(nick + ".Skills.Rare.Name");
+                            List RarDesc = CCSkills.get().getList(nick + ".Skills.Rare.Description");
+                            List RarRanks = CCSkills.get().getList(nick + ".Skills.Rare.Rank");
+                            List RarProfHave = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Have");
+                            List RarProfNeed = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Need");
+                            List RarType = CCSkills.get().getList(nick + ".Skills.Rare.Type");
+
+                            int i = RarSkills.indexOf("Toughness");
+                            for (int j = 0; j < RarDesc.size(); j++) {
+                                if (RarDesc.get(j) == "Attacks that deal 5HP or less") {
+                                    RarDesc.remove(j);
+                                    RarDesc.remove(j + 1);
+                                    RarDesc.remove(j + 2);
+                                    RarDesc.remove(j - 1);
+                                }
+                            }
+                            RarSkills.remove(i);
+                            RarRanks.remove(i);
+                            RarProfHave.remove(i);
+                            RarProfNeed.remove(i);
+                            RarType.remove(i);
+
+
+                            CCSkills.get().set(nick + ".Skills.Rare.Name", RarSkills);
+                            CCSkills.get().set(nick + ".Skills.Rare.Description", RarDesc);
+                            CCSkills.get().set(nick + ".Skills.Rare.Rank", RarRanks);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Have", RarProfHave);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Need", RarProfNeed);
+                            CCSkills.get().set(nick + ".Skills.Rare.Type", RarType);
+                            CCSkills.save();
+                        }
+                        break;
+                    case"Dragonborn":
+                        //Incomplete Fire Dragon's Scales
+                        if (CCSkills.get().getList(nick + ".Skills.Rare.Name").contains("Incomplete Fire Dragon's Scales")) {
+
+                            List RarSkills = CCSkills.get().getList(nick + ".Skills.Rare.Name");
+                            List RarDesc = CCSkills.get().getList(nick + ".Skills.Rare.Description");
+                            List RarRanks = CCSkills.get().getList(nick + ".Skills.Rare.Rank");
+                            List RarProfHave = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Have");
+                            List RarProfNeed = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Need");
+                            List RarType = CCSkills.get().getList(nick + ".Skills.Rare.Type");
+
+                            int i = RarSkills.indexOf("Incomplete Fire Dragon's Scales");
+                            for (int j = 0; j < RarDesc.size(); j++) {
+                                if (RarDesc.get(j) == "with 30 sec cooldown") {
+                                    RarDesc.remove(j);
+                                    RarDesc.remove(j - 1);
+                                    RarDesc.remove(j - 2);
+                                    RarDesc.remove(j - 3);
+                                }
+                            }
+                            RarSkills.remove(i);
+                            RarRanks.remove(i);
+                            RarProfHave.remove(i);
+                            RarProfNeed.remove(i);
+                            RarType.remove(i);
+
+
+                            CCSkills.get().set(nick + ".Skills.Rare.Name", RarSkills);
+                            CCSkills.get().set(nick + ".Skills.Rare.Description", RarDesc);
+                            CCSkills.get().set(nick + ".Skills.Rare.Rank", RarRanks);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Have", RarProfHave);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Need", RarProfNeed);
+                            CCSkills.get().set(nick + ".Skills.Rare.Type", RarType);
+                            CCSkills.save();
+                        }
+                        break;
+                    case"Undead":
+                        //Incomplete Fire Dragon's Scales
+                        if (CCSkills.get().getList(nick + ".Skills.Rare.Name").contains("Twisted Sun and Moon")) {
+
+                            List RarSkills = CCSkills.get().getList(nick + ".Skills.Rare.Name");
+                            List RarDesc = CCSkills.get().getList(nick + ".Skills.Rare.Description");
+                            List RarRanks = CCSkills.get().getList(nick + ".Skills.Rare.Rank");
+                            List RarProfHave = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Have");
+                            List RarProfNeed = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Need");
+                            List RarType = CCSkills.get().getList(nick + ".Skills.Rare.Type");
+
+                            int i = RarSkills.indexOf("Twisted Sun and Moon");
+                            for (int j = 0; j < RarDesc.size(); j++) {
+                                if (RarDesc.get(j) == "you are boosted by 15% when its night") {
+                                    RarDesc.remove(j);
+                                    RarDesc.remove(j - 1);
+                                    RarDesc.remove(j - 2);
+                                    RarDesc.remove(j - 3);
+                                }
+                            }
+                            RarSkills.remove(i);
+                            RarRanks.remove(i);
+                            RarProfHave.remove(i);
+                            RarProfNeed.remove(i);
+                            RarType.remove(i);
+
+
+                            CCSkills.get().set(nick + ".Skills.Rare.Name", RarSkills);
+                            CCSkills.get().set(nick + ".Skills.Rare.Description", RarDesc);
+                            CCSkills.get().set(nick + ".Skills.Rare.Rank", RarRanks);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Have", RarProfHave);
+                            CCSkills.get().set(nick + ".Skills.Rare.Proficiency.Need", RarProfNeed);
+                            CCSkills.get().set(nick + ".Skills.Rare.Type", RarType);
+                            CCSkills.save();
+                        }
+                        break;
+                }
+
                 switch (race){
                     case"Human":
                         CCPlayerInfo.get().set(nick+".Race","Human");
