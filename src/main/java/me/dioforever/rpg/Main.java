@@ -1,10 +1,9 @@
 package me.dioforever.rpg;
 
-import me.dioforever.rpg.CustomMobs.CustomHealth.HealListener;
+import me.dioforever.rpg.CustomHealth.HealListener;
 import me.dioforever.rpg.Leveling.FarmMineListener;
 import me.dioforever.rpg.Leveling.FishingListener;
 import me.dioforever.rpg.Leveling.KillEntityListener;
-import me.dioforever.rpg.CustomMobs.MobSpawnListener;
 import me.dioforever.rpg.Leveling.Skills.LumberingSkill;
 import me.dioforever.rpg.Leveling.Skills.MiningSkill;
 import me.dioforever.rpg.Listeners.CastingSystem;
@@ -184,7 +183,7 @@ public final class Main extends JavaPlugin {
         //getServer().getPluginManager().registerEvents(new MobSpawnListener(),this);
 
         getServer().getPluginManager().registerEvents(new DamageListener(),this);
-        getServer().getPluginManager().registerEvents(new me.dioforever.rpg.CustomMobs.CustomHealth.DamageListener(),this);
+        getServer().getPluginManager().registerEvents(new me.dioforever.rpg.CustomHealth.DamageListener(),this);
         getServer().getPluginManager().registerEvents(new HealListener(),this);
 
 
