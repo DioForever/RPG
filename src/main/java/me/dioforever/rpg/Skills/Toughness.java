@@ -8,22 +8,14 @@ import org.bukkit.event.entity.EntityDamageEvent;
 
 import java.util.List;
 
-public class Toughness implements Listener {
+public class Toughness {
 
-    @EventHandler
-    public void onDamage(EntityDamageEvent e){
-        if(e instanceof Player){
-            Player p = ((Player) e).getPlayer();
-            String nick = p.getName();
-            List curProfL = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Have");
-            List nedProfL = CCSkills.get().getList(nick + ".Skills.Rare.Proficiency.Need");
-            List Ranks = CCSkills.get().getList(nick + ".Skills.Rare.Rank");
-            List skills = CCSkills.get().getList(nick + ".Skills.Rare.Name");
-            p.sendMessage(String.valueOf(e.getDamage()*5));
-            if(skills.contains("Toughness")){
-                e.setDamage(0);
-                p.sendMessage("test");
-            }
+    //Every Damage related skill has to be in the me.dioforever.rpg.CustomHealth.DamageListener to work
+    public boolean Thoughness(String nick){
+        List skills = CCSkills.get().getList(nick+".Skills.Rare.Name");
+        if(skills.contains("Toughness")){
+            return true;
         }
+        return false;
     }
 }

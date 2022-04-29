@@ -172,7 +172,6 @@ public final class Main extends JavaPlugin {
         //Skills
         getServer().getPluginManager().registerEvents(new FriendofNature(this),this);
         getServer().getPluginManager().registerEvents(new IncompleteFireDragonsSkin(this),this);
-        getServer().getPluginManager().registerEvents(new Toughness(),this);
 
         //Optional - Leveling
         getServer().getPluginManager().registerEvents(new FarmMineListener(this),this);
