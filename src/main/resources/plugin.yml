@@ -1,0 +1,64 @@
+name: RPG
+version: '${project.version}'
+main: me.dioforever.rpg.Main
+api-version: 1.17
+authors: [ DioForever ]
+website: https://dioforever.live
+commands:
+  preload:
+    description: Reloads configs
+  message:
+    description: Test
+  menu:
+    description: Opens up menu
+  races:
+    description: Opens a Menu where you can chose your race and class!
+  classes:
+    description: Opens a Menu where you can chose your race and class!
+  updates:
+    description: Writes down newest features of RPG plugin
+  guild:
+    description: Write /Guild create <NameOfGuild> to create a Guild!
+  guild create:
+    description: Creates Guild
+  guild invite:
+    description: Invites person to a guild
+  guild join:
+    description: Joins guild
+  guild leave:
+    description: Leaves guild
+  Seth:
+    description: Summons seth
+  uachange:
+    description: Changes your Unique Ability - Requires OP
+    aliases: [ uachange Reinforcement I, uachange Reinforcement II, uachange Reinforcement III,
+               uachange Lucker I, uachange Lucker II, uachange Lucker III,
+               uachange Miner I, uachange Miner II, uachange Miner III,
+               uachange Tank I, uachange Tank II, uachange Tank III,
+               uachange Blacksmith I, uachange Blacksmith II, uachange Blacksmith III,
+               uachange Night Watcher I, uachange Night Watcher II, uachange Night Watcher III,
+               uachange Regenerate I, uachange Regenerate II, uachange Regenerate III,
+               uachange Third Eye I, uachange Third Eye II, uachange Third Eye III,
+               uachange Blood Thief I, uachange Blood Thief II, uachange Blood Thief III,
+               uachange Power of Giant I, uachange Power of Giant II, uachange Power of Giant III,
+               uachange Master Swordsman I, uachange Master Swordsman II, uachange Master Swordsman III,
+               uachange Master Archer I, uachange Master Archer II - II Tier, uachange Master Archer III,
+               uachange Mana Affinity I, uachange Mana Affinity II - Tier III, uachange Mana Affinity III,
+               uachange Commander I, uachange Commander II, uachange Commander III,
+               uachange Solo I, uachange Solo II, uachange Solo III]
+  skilladd:
+    description: Gives you a skill - Requires OP
+  xpmultiplier:
+    description: sets the multiplier of xp - RRequiers OP
+  levelbar:
+    description: Turns your XP/PRF bar that shows up at top of the screen ON or OFF
+  givexp:
+    description: /givexp [Name] [Ammount]
+  racechange:
+    description: Changes your Race
+    aliases:
+      - racechange Human
+      - racechange Elf
+      - racechange Undead
+      - racechange Dragonborn
+      - racechange Dwarf
