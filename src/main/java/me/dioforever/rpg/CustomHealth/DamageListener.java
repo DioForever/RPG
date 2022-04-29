@@ -33,8 +33,15 @@ public class DamageListener implements Listener {
 
                 Player p = (Player) e.getEntity();
                 String nick = p.getName();
+                int defenseBasic = CCStats.get().getInt(nick+".Defense");
+                int defenseBonus = CCStats.get().getInt(nick+".BDefense");
+                int defenseTemp = CCStats.get().getInt(nick+".TDefense");
+                int defense = defenseBasic+defenseBonus+defenseTemp;
                 double damage = e.getDamage()*5;
-                int MAXHP = CCLeft.get().getInt(nick+".MAXHP");
+                damage-=defense;
+                if(damage<0){
+                    damage=0;
+                }
                 int HP = CCLeft.get().getInt(nick+".HP");
                 if(Toughness.Thoughness(nick)&& damage<=5){
                     //The player Thoughness and damage is smaller or equal to 5
@@ -42,8 +49,6 @@ public class DamageListener implements Listener {
                     return;
                 }
 
-                double  percent = damage/MAXHP*100;
-                double FinalDamage = damage;
                 CCLeft.get().set(nick+".HP",HP-damage);
                 int HPNew = CCLeft.get().getInt(nick+".HP");
 
@@ -67,11 +72,11 @@ public class DamageListener implements Listener {
                 int strengthTemp = CCStats.get().getInt(nickDamager+".StrengthT");
                 strength = (strengthBasic+strengthBonus+strengthTemp)/15;
 
-                int defenseBasic = CCStats.get().getInt(nick+".Defense");
-                int defenseBonus = CCStats.get().getInt(nick+".DefenseB");
-                int defenseTemp = CCStats.get().getInt(nick+".DefenseT");
-                defense = (defenseBasic + defenseBonus+ defenseTemp)/15;
             }
+            int defenseBasic = CCStats.get().getInt(nick+".Defense");
+            int defenseBonus = CCStats.get().getInt(nick+".DefenseB");
+            int defenseTemp = CCStats.get().getInt(nick+".DefenseT");
+            defense = (defenseBasic + defenseBonus+ defenseTemp)/15;
 
 
 
