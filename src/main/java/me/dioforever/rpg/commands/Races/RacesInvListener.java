@@ -63,7 +63,7 @@ public class RacesInvListener implements Listener {
                                     CCStats.get().set(nick+".Intelligence",Intelligence+2);
                                     CCStats.save();
                                     CCPlayerInfo.save();
-                                    player.sendMessage(color("&aYou have selected &l&aHuman!"));
+                                    player.sendMessage(color("&a&l[RPG] &r&aYou have selected &l&aHuman!"));
                                     if(!CCSkills.get().getList(nick+".Skills.Epic.Name").contains("Goddess' Blessing")){
                                         //Goddess' Blessing
                                         if(true){
@@ -102,7 +102,7 @@ public class RacesInvListener implements Listener {
                                     }
 
                                 }else{
-                                    player.sendMessage(color("&4&l(!) You already chose a Race"));
+                                    player.sendMessage(color("&4&l[RPG] &r&4You already chose a Race"));
                                 }
 
                             }
@@ -115,7 +115,7 @@ public class RacesInvListener implements Listener {
                                     CCStats.get().set(nick + ".Agility", Agility + 5);
                                     CCStats.get().set(nick + ".Strength", Strength + 5);
                                     CCStats.save();
-                                    player.sendMessage(color("&aYou have selected &l&4Elf!"));
+                                    player.sendMessage(color("&a&l[RPG] &r&aYou have selected &l&2Elf!"));
                                     if(!CCSkills.get().getList(nick+".Skills.Rare.Name").contains("Friend of Nature")){
                                         //Friend of Nature
                                         if(true){
@@ -155,7 +155,7 @@ public class RacesInvListener implements Listener {
                                 }
 
                                 }else {
-                                    player.sendMessage(color("&4&l(!) You already chose a Race"));
+                                    player.sendMessage(color("&4&l[RPG] &r&4You already chose a Race"));
                                 }
                             }
                             break;
@@ -169,7 +169,7 @@ public class RacesInvListener implements Listener {
                                     CCStats.get().set(nick + ".Health", Health + 3);
                                     CCStats.save();
                                     CCPlayerInfo.save();
-                                    player.sendMessage(color("&aYou have selected &l&aDwarf!"));
+                                    player.sendMessage(color("&a&l[RPG] &aYou have selected &l&aDwarf!"));
                                     if(!CCSkills.get().getList(nick+".Skills.Rare.Name").contains("Toughness")){
                                         //Friend of Nature
                                         if(true){
@@ -207,7 +207,7 @@ public class RacesInvListener implements Listener {
 
 
                                 }else {
-                                    player.sendMessage(color("&4&l(!) You already chose a Race"));
+                                    player.sendMessage(color("&4&l[RPG] &r&4You already chose a Race"));
                                 }
                             }
                             break;
@@ -220,7 +220,7 @@ public class RacesInvListener implements Listener {
                                     CCStats.get().set(nick + ".Intelligence", Intelligence + 5);
                                     CCStats.save();
                                     CCPlayerInfo.save();
-                                    player.sendMessage(color("&aYou have selected &l&4Dragonborn"));
+                                    player.sendMessage(color("&a&l[RPG] &aYou have selected &l&4Dragonborn"));
                                     if(!CCSkills.get().getList(nick+".Skills.Rare.Name").contains("Incomplete Fire Dragon's Scales")){
                                         //Fire Resistance Rare Skill
                                         if(true){
@@ -255,7 +255,7 @@ public class RacesInvListener implements Listener {
                                         }
                                     }
                                 }else {
-                                    player.sendMessage(color("&4&l(!) You already chose a Race"));
+                                    player.sendMessage(color("&4&l[RPG] &r&4You already chose a Race"));
                                 }
                             }
                             break;
@@ -268,7 +268,7 @@ public class RacesInvListener implements Listener {
                                     CCStats.get().set(nick + ".Intelligence", Intelligence + 6);
                                     CCStats.get().set(nick + ".Wisdom", Wisdom + 6);
                                     CCStats.save();
-                                    player.sendMessage(color("&aYou have selected &l&6Undead!"));
+                                    player.sendMessage(color("&a&l[RPG] &aYou have selected &l&6Undead!"));
                                     if(!CCSkills.get().getList(nick+".Skills.Rare.Name").contains("Twisted Sun and Moon")){
                                         //Twisted Sun and Moon Rare Skill
                                         if(true){
@@ -304,7 +304,7 @@ public class RacesInvListener implements Listener {
                                     }
 
                                 }else {
-                                    player.sendMessage(color("&4&l(!) You already chose a Race"));
+                                    player.sendMessage(color("&4&l[RPG] &r&4You already chose a Race"));
                                 }
                             }
                             break;
@@ -314,9 +314,9 @@ public class RacesInvListener implements Listener {
                                 if(Class=="Classles"){
                                     CCPlayerInfo.get().set(nick+".Class.Normal","Mage");
                                     CCPlayerInfo.save();
-                                    player.sendMessage(color("&aYou have selected Class &l&5Mage!"));
+                                    player.sendMessage(color("&a&l&[RPG] &r&aYou have selected Class &l&5Mage!"));
                                 }else {
-                                    player.sendMessage(color("&4&l(!) You already chose a Class"));
+                                    player.sendMessage(color("&4&l[RPG] &r&4You already chose a Class"));
                                 }
                             }
                             break;
@@ -326,9 +326,9 @@ public class RacesInvListener implements Listener {
                                 if(Class=="Classles"){
                                     CCPlayerInfo.get().set(nick+".Class.Normal","Warrior");
                                     CCPlayerInfo.save();
-                                    player.sendMessage(color("&aYou have selected Class &l&4Warrior!"));
+                                    player.sendMessage(color("&a&l[RPG] &r&aYou have selected Class &l&4Warrior!"));
                                 }else {
-                                    player.sendMessage(color("&4&l(!) You already chose a Class"));
+                                    player.sendMessage(color("&4&l[RPG] &r&4You already chose a Class"));
                                 }
                             }
                             break;

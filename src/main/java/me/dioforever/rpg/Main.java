@@ -221,18 +221,18 @@ public final class Main extends JavaPlugin {
 
         //
         Bar();
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+" -------------------------");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD);
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"     Loading RPG plugin...");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |=======================|");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |                       |");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |     Version 1.0.1     |");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |                       |");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |=======================|");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"     Made by DioForever");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"     Website: dioforever.live");
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD);
-        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "["+ChatColor.GOLD+"RPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+" -------------------------");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+" -------------------------");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD);
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"    Loading DioRPG plugin..");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |=======================|");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |                       |");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |     Version 1.0.1     |");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |                       |");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"   |=======================|");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"     Made by DioForever");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+"     Website: dioforever.live");
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW+"["+ChatColor.GOLD+ "DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD);
+        Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "["+ChatColor.GOLD+"DioRPG"+ChatColor.YELLOW +"]"+ChatColor.GOLD+" -------------------------");
 
         //PERIODICAL SAVE
         new BukkitRunnable() {

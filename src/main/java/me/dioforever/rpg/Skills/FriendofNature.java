@@ -71,7 +71,7 @@ public class FriendofNature implements Listener {
                     SkillsActivatedTemp.put(nick,skillsAT);
                     Main.setSkillsActivatedTemp(SkillsActivatedTemp);
 
-                    p.sendMessage(color("&a&l(!) Skill Friend of Nature has taken effect!"));
+                    p.sendMessage(color("&a&l[RPG]&r&a Skill Friend of Nature has taken effect!"));
 
                     Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                         @Override
@@ -84,8 +84,8 @@ public class FriendofNature implements Listener {
 
                                 }
                             }
-                            p.sendMessage(color("&a&l(!) Skill Friend of Nature has taken effect!"));
-                            p.sendMessage(color("&a&l(!) Skill Friend of Nature's cooldown of 5 minutes started!"));
+                            p.sendMessage(color("&a&l[RPG]&r&a Skill Friend of Nature has taken effect!"));
+                            p.sendMessage(color("&a&l[RPG]&r&a Skill Friend of Nature's cooldown of 5 minutes started!"));
                         }
                     }, 20*30L); //20 Tick (1 Second) delay before run() is called
                     Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
@@ -105,7 +105,7 @@ public class FriendofNature implements Listener {
                             skillsAT1.remove("Friend of Nature");
                             SkillsActivatedTemp1.put(nick,skillsAT1);
                             Main.setSkillsActivatedTemp(SkillsActivatedTemp1);
-                            p.sendMessage(color("&a&l(!)Skill Friend of Nature's cooldown has ended!"));
+                            p.sendMessage(color("&a&l[RPG]&r&a Skill Friend of Nature's cooldown has ended!"));
                         }
                     }, 20*330L); //20 Tick (1 Second) delay before run() is called
 

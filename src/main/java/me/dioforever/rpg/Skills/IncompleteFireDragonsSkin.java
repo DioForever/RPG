@@ -88,7 +88,7 @@ public class IncompleteFireDragonsSkin implements Listener {
                             SkillsActivatedTemp.put(nick,skillsAT);
                             Main.setSkillsActivatedTemp(SkillsActivatedTemp);
 
-                            p.sendMessage(color("&4&l(!) Skill Incomplete Fire Dragon's Scales has taken effect!"));
+                            p.sendMessage(color("&c&l[RPG]&r&c Skill Incomplete Fire Dragon's Scales has taken effect!"));
 
                             //Now create the runnable
                             new BukkitRunnable() {
@@ -134,11 +134,11 @@ public class IncompleteFireDragonsSkin implements Listener {
 
                                     //if specific time left, inform player and or end this
                                     if(i==30){
-                                        p.sendMessage(color("&4&l(!) Skill Incomplete Fire Dragon's Scales's cooldown has started!"));
+                                        p.sendMessage(color("&c&l[RPG]&r&c Skill Incomplete Fire Dragon's Scales's cooldown has started!"));
                                     }
                                     if(i==0){
                                         //Inform player
-                                        p.sendMessage(color("&4&l(!) Skill Incomplete Fire Dragon's Scales's cooldown has ended!"));
+                                        p.sendMessage(color("&c&l[RPG]&r&c Skill Incomplete Fire Dragon's Scales's cooldown has ended!"));
                                         //Remove the Cooldown
                                         skillscooldownPlayer1.remove("Incomplete Fire Dragon's Scales");
                                         SkillsCooldownT1.put(nick,skillscooldownPlayer1);
@@ -158,158 +158,14 @@ public class IncompleteFireDragonsSkin implements Listener {
                                         Main.setSkillsCooldownT(SkillsCooldownT1);
                                     }
 
-
-
-
-
-
-
-
                                 }
                                 //Repeat this task every 5 seconds
                             }.runTaskTimer(plugin,0,20*5);
                         }
-
-
-
-
-
-
                     //if cooldown bigger than 30, then nullify the dmg
                     if(cooldown>30){
                         e.setDamage(0);
                     }
-
-                    /*
-                    if(SkillsActivatedTemp.get(nick)!=null){
-                        if(SkillsActivatedTemp.get(nick).contains("Incomplete Fire Dragon's Scales")){
-                            p.sendMessage("Incomplete");
-                                if(Main.getPlayers().contains(nick) == false){
-                                    p.sendMessage("Does not have the player, so add him");
-                                    HashMap finalSkillscooldownPlayer = skillscooldownPlayer;
-                                    Map<String, HashMap> finalSkillsCooldownT = SkillsCooldownT;
-                                    HashMap finalSkillscooldownPlayer1 = skillscooldownPlayer;
-                                    Map<String, HashMap> finalSkillsCooldownT1 = SkillsCooldownT;
-                                    Map<String, List> finalSkillsActivatedTemp = SkillsActivatedTemp;
-                                    final int[] cooldown1 = {(int) finalSkillsCooldownT1.get(nick).get("Incomplete Fire Dragon's Scales")};
-
-                                    List<String> playersL = new ArrayList<>();
-                                    if(Main.getPlayers()!=null){
-                                        playersL = Main.getPlayers();
-                                    }
-                                    playersL.add(nick);
-                                    Main.setPlayers(playersL);
-                                    p.sendMessage(String.valueOf(Main.getPlayers()));
-
-                                    new BukkitRunnable() {
-                                        @Override
-                                        public void run() {
-                                            //Add this to Cooldowns
-                                            cooldown1[0]--;
-                                            finalSkillscooldownPlayer.put("Incomplete Fire Dragon's Scales", cooldown1[0]);
-                                            finalSkillsCooldownT.put(nick, finalSkillscooldownPlayer);
-                                            Main.setSkillsCooldownT(finalSkillsCooldownT);
-                                            if(cooldown1[0]<=0){
-                                                //Remove the skill
-                                                List skillsAT = new ArrayList<>();
-                                                if(finalSkillsActivatedTemp.get(nick)!=null){
-                                                    skillsAT= finalSkillsActivatedTemp.get(nick);
-                                                }
-                                                skillsAT.remove("Incomplete Fire Dragon's Scales");
-                                                finalSkillsActivatedTemp.put(nick,skillsAT);
-                                                Main.setSkillsActivatedTemp(finalSkillsActivatedTemp);
-                                                //Remove the cooldown
-                                                finalSkillscooldownPlayer1.remove("Incomplete Fire Dragon's Scales");
-                                                finalSkillsCooldownT1.put(nick,finalSkillscooldownPlayer1);
-                                                Main.setSkillsCooldownT(finalSkillsCooldownT1);
-
-
-                                                //Inform the player about it
-                                                p.sendMessage(color("&5&l(!) Skill Incomplete Fire Dragon's Scales's cooldown has ended!"));
-                                            }
-
-                                            //Check if cooldown is 0, if is, then delete everything about it
-                                        }
-                                    }.runTaskTimer(plugin,0,20);
-                                }
-
-
-                        }else{
-                            //I need to create the cooldown and skill
-
-                            //Add this to the skills on Temporary
-                            List skillsAT = new ArrayList<>();
-                            if(SkillsActivatedTemp.get(nick)!=null){
-                                skillsAT=SkillsActivatedTemp.get(nick);
-                            }
-                            skillsAT.add("Incomplete Fire Dragon's Scales");
-                            SkillsActivatedTemp.put(nick,skillsAT);
-                            Main.setSkillsActivatedTemp(SkillsActivatedTemp);
-
-                            //now add the cooldown
-                            skillscooldownPlayer.put("Incomplete Fire Dragon's Scales",cooldown);
-                            SkillsCooldownT.put(nick,skillscooldownPlayer);
-                            Main.setSkillsEffectT(SkillsCooldownT);
-                            //Added to temp skills, temp cooldowns
-
-
-                            //Inform the player
-
-                            p.sendMessage(color("&5&l(!) Skill Incomplete Fire Dragon's Scales has taken affect!"));
-                        }
-                    }else{
-                        //I need to create the cooldown and skill
-
-                        //Add this to the skills on Temporary
-                        List skillsAT = new ArrayList<>();
-                        if(SkillsActivatedTemp.get(nick)!=null){
-                            skillsAT=SkillsActivatedTemp.get(nick);
-                        }
-                        skillsAT.add("Incomplete Fire Dragon's Scales");
-                        SkillsActivatedTemp.put(nick,skillsAT);
-                        Main.setSkillsActivatedTemp(SkillsActivatedTemp);
-
-                        //now add the cooldown
-                        skillscooldownPlayer.put("Incomplete Fire Dragon's Scales",cooldown);
-                        SkillsCooldownT.put(nick,skillscooldownPlayer);
-                        Main.setSkillsEffectT(SkillsCooldownT);
-                        //Added to temp skills, temp cooldowns
-
-
-                        //Inform the player
-                        System.out.println("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL" +
-                                "LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL");
-                        //Inform the player
-                        p.sendMessage(color("&5&l(!) Skill Incomplete Fire Dragon's Scales has taken affect!"));
-                    }*/
-
-                    //Check if the cooldown is 26 and higher, then cancel the damage
-
-
-
-
-
-
-
-
-                    /*
-                    Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                        @Override
-                        public void run() {
-                                //Now set the cooldown to 25 and then
-                            p.sendMessage("Well, I hope");
-                            // after that do this --->
-                            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                                @Override
-                                public void run() {
-                                    //Now clear the HashMaps from the skill
-                                    p.sendMessage("this worked out");
-                                }
-                            }, 20*25L); //20 Tick (1 Second) delay before run() is called = 5sec
-                        }
-                    }, 20*5L); //20 Tick (1 Second) delay before run() is called = 5sec
-                    */
-
                 }
             }
         }
