@@ -4,8 +4,8 @@ import me.dioforever.rpg.CustomHealth.HealListener;
 import me.dioforever.rpg.Leveling.FarmMineListener;
 import me.dioforever.rpg.Leveling.FishingListener;
 import me.dioforever.rpg.Leveling.KillEntityListener;
-import me.dioforever.rpg.Leveling.Skills.LumberingSkill;
-import me.dioforever.rpg.Leveling.Skills.MiningSkill;
+import me.dioforever.rpg.Skills.LumberingSkill;
+import me.dioforever.rpg.Skills.MiningSkill;
 import me.dioforever.rpg.Listeners.CastingSystem;
 import me.dioforever.rpg.Menu.MonsterCodex;
 import me.dioforever.rpg.Menu.RecipeInvListener;
@@ -13,7 +13,6 @@ import me.dioforever.rpg.Skills.FriendofNature;
 import me.dioforever.rpg.Skills.Functions.ComboSettingListener;
 import me.dioforever.rpg.Skills.Functions.SkillsClickListener;
 import me.dioforever.rpg.Skills.IncompleteFireDragonsSkin;
-import me.dioforever.rpg.Skills.Toughness;
 import me.dioforever.rpg.Skills.TwistedSunAndMoon;
 import me.dioforever.rpg.StatWork.DamageListener;
 import me.dioforever.rpg.Listeners.JoinListener;
@@ -39,10 +38,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 import static me.dioforever.rpg.Utils.color;
@@ -59,16 +55,11 @@ public final class Main extends JavaPlugin {
     public static Map <String,HashMap> SkillsCooldown= new HashMap<String,HashMap>();
     public static Map <String,HashMap> SkillsCooldownT= new HashMap<String,HashMap>();
 
-    public static List<String> players;
+    public static Map<UUID,List> CustomMobsStats = new HashMap<>();
+    public static Map<UUID,List> CustomMobsSkills = new HashMap<>();
+    public static Map<UUID,String> CustomMobsType = new HashMap<>();
 
 
-    public static List<String> getPlayers() {
-        return players;
-    }
-
-    public static void setPlayers(List<String> players) {
-        Main.players = players;
-    }
     //Will have nick - Hashmap of the Skill (String) + Effect(List) for example
 
 
@@ -498,5 +489,29 @@ public final class Main extends JavaPlugin {
 
     public static void setSkillsEffect(Map<String, HashMap> skillsEffect) {
         SkillsEffect = skillsEffect;
+    }
+
+    public static void setCustomMobsStats(Map<UUID, List> customMobsStats) {
+        CustomMobsStats = customMobsStats;
+    }
+
+    public static Map<UUID, List> getCustomMobsStats() {
+        return CustomMobsStats;
+    }
+
+    public static void setCustomMobsSkills(Map<UUID, List> customMobsSkills) {
+        CustomMobsSkills = customMobsSkills;
+    }
+
+    public static Map<UUID, List> getCustomMobsSkills() {
+        return CustomMobsSkills;
+    }
+
+    public static void setCustomMobsType(Map<UUID, String> customMobsType) {
+        CustomMobsType = customMobsType;
+    }
+
+    public static Map<UUID, String> getCustomMobsType() {
+        return CustomMobsType;
     }
 }

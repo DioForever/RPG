@@ -1,4 +1,4 @@
-package me.dioforever.rpg.Leveling.Skills;
+package me.dioforever.rpg.Skills;
 
 import me.dioforever.rpg.files.CCAchieved;
 import me.dioforever.rpg.files.CCSkills;
