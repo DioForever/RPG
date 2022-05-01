@@ -1,6 +1,6 @@
 package me.dioforever.rpg.commands.Testing;
 
-import me.dioforever.rpg.CustomMobs.OutpostGeneration;
+import me.dioforever.rpg.Customs.Outposts.OutpostGeneration;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

@@ -108,6 +108,8 @@ public final class Main extends JavaPlugin {
         CCPlayerInfo.setup();
         CCCombos.setup();
         CCAchieved.setup();
+        CCOutposts.setup();
+        CCOutposts.get().options().copyDefaults(true);
         CCOn.get().options().copyDefaults(true);
         CCLeft.get().options().copyDefaults(true);
         CCGuilds.get().options().copyDefaults(true);
@@ -120,6 +122,7 @@ public final class Main extends JavaPlugin {
         CCAchieved.get().options().copyDefaults(true);
         CCGuilds.get().addDefault("Guilds",test3);
         CCGuilds.get().addDefault("GuildJoined",test4);
+        CCOutposts.save();
         CCOn.save();
         CCLeft.save();
         PluginSettings.save();
@@ -246,6 +249,7 @@ public final class Main extends JavaPlugin {
         //Inform();
 
     }
+
 
     @Override
     public void onDisable() {

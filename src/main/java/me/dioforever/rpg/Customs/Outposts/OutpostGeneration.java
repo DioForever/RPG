@@ -1,5 +1,6 @@
-package me.dioforever.rpg.CustomMobs;
+package me.dioforever.rpg.Customs.Outposts;
 
+import me.dioforever.rpg.files.CCOutposts;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.BlockFace;
@@ -9,6 +10,10 @@ import org.bukkit.block.data.type.Stairs;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkLoadEvent;
 import org.bukkit.material.MaterialData;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class OutpostGeneration implements Listener {
 
@@ -23,6 +28,36 @@ public class OutpostGeneration implements Listener {
         double x1 = middle.getBlockX();;
         double y1 = middle.getBlockY();;
         double z1 = middle.getBlockZ();;
+        String idx = String.valueOf((int)x1);
+        String idy = String.valueOf((int)y1);
+        String idz = String.valueOf((int)z1);
+        String id = "x"+idx+"y"+idy+"z"+idz;
+
+        Random random = new Random();
+        int rand = random.nextInt(2);
+        String type = "";
+        switch (rand){
+            case 0:
+                    type="goblin";
+                break;
+            case 1:
+                    type="orc";
+                break;
+        }
+
+        List everything = new ArrayList<>();
+        if(CCOutposts.get().getList("everything")!=null){
+            everything=CCOutposts.get().getList("everything");
+        }
+        everything.add(id);
+        if(CCOutposts.get().getList("everything")==null){
+            CCOutposts.get().addDefault("everything",everything);
+        }else{
+            CCOutposts.get().set("everything",everything);
+        }
+        CCOutposts.get().addDefault(id+".Type",type);
+        CCOutposts.get().addDefault(id+".loc",middle);
+        CCOutposts.save();
 
         //CHAINS FROM CORE 1.0
         Location locChain1 = new Location(middle.getWorld(), x1+1,y1,z1);
