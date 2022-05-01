@@ -199,6 +199,7 @@ public final class Main extends JavaPlugin {
         getCommand("levelbar").setExecutor(new levelBarCmd());
         getCommand("givexp").setExecutor(new givexp());
         getCommand("racechange").setExecutor(new racechange());
+        getCommand("spawnoutpost").setExecutor(new spawnStructer());
 
         //Races
         getCommand("races").setExecutor(new Races());
@@ -514,4 +515,5 @@ public final class Main extends JavaPlugin {
     public static Map<UUID, String> getCustomMobsType() {
         return CustomMobsType;
     }
+
 }
