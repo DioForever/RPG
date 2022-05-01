@@ -1,6 +1,7 @@
 package me.dioforever.rpg;
 
 import me.dioforever.rpg.CustomHealth.HealListener;
+import me.dioforever.rpg.Customs.Outposts.BreakCoreListener;
 import me.dioforever.rpg.Leveling.FarmMineListener;
 import me.dioforever.rpg.Leveling.FishingListener;
 import me.dioforever.rpg.Leveling.KillEntityListener;
@@ -178,6 +179,7 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new DamageListener(),this);
         getServer().getPluginManager().registerEvents(new me.dioforever.rpg.CustomHealth.DamageListener(),this);
         getServer().getPluginManager().registerEvents(new HealListener(),this);
+        getServer().getPluginManager().registerEvents(new BreakCoreListener(),this);
 
 
         //getServer().getPluginManager().registerEvents(new DamageListener(),this);
