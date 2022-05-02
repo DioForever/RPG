@@ -353,7 +353,14 @@ public final class Main extends JavaPlugin {
                     int HPSTAT = CCStats.get().getInt(nick+".Health");
                     int HPTMP = CCStats.get().getInt(nick+".THealth");
                     CCLeft.get().set(nick+".MAXHP",(100+(HPSTAT))+HPTMP);
+                    //Check if players HP make sense
                     int HpMax = CCLeft.get().getInt(nick+".MAXHP");
+                    if(HPRN>HpMax){
+                        CCLeft.get().set(nick+".HP",HpMax);
+                    }
+                    if(p.getHealth()==p.getMaxHealth()&&(HPRN!=HpMax)){
+                        p.setHealth(p.getMaxHealth());
+                    }
                     CCPlayerInfo.save();
                     CCLeft.save();
                     // 100HP = 20Health

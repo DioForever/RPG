@@ -1,5 +1,6 @@
 package me.dioforever.rpg.Customs.Outposts;
 
+import me.dioforever.rpg.CustomMobs.CreateEntities.OrcChampion;
 import me.dioforever.rpg.files.CCOutposts;
 import me.dioforever.rpg.files.CCStats;
 import org.bukkit.Location;
@@ -12,6 +13,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import java.util.List;
 
 public class BreakCoreListener implements Listener {
+    static OrcChampion orcChampion;
     @EventHandler
     public void onBreakBlock(BlockBreakEvent e){
         if(e.getBlock().getType()!= Material.CRYING_OBSIDIAN)return;
@@ -38,12 +40,17 @@ public class BreakCoreListener implements Listener {
             p.sendMessage("You broke the core of the outpost!");
             String type = (String) types.get(index);
             //p.sendMessage(type);
-            p.sendMessage(String.valueOf(types));
-            p.sendMessage(String.valueOf(locs));
-            p.sendMessage(String.valueOf(everythings));
             types.remove(index);
             locs.remove(index);
             everythings.remove(index);
+            switch (type){
+                case"goblin":
+                    //OrcChampion.SpawnOrcChampion(p,loc,1);
+                    break;
+                case"orc":
+                    //OrcChampion.SpawnOrcChampion(p,loc,1);
+                    break;
+            }
 
 
 

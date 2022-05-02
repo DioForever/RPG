@@ -1,4 +1,4 @@
-package me.dioforever.rpg.commands.Monsters;
+package me.dioforever.rpg.CustomMobs.CreateEntities;
 
 import me.dioforever.rpg.Main;
 import org.bukkit.Location;
@@ -9,7 +9,8 @@ import java.util.*;
 
 public class OrcChampion {
 
-    public void SpawnOrcChampion(Player p, Location loc, int level){
+
+    public static void SpawnOrcChampion(Player p, Location loc, int level){
         // TEXTURE
         // TEXTURE
         //            https://www.youtube.com/watch?v=CAnVzNODr5U

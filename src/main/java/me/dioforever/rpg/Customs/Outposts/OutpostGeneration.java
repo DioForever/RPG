@@ -1,14 +1,19 @@
 package me.dioforever.rpg.Customs.Outposts;
 
 import me.dioforever.rpg.files.CCOutposts;
+import org.bukkit.Axis;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
+import org.bukkit.block.data.Bisected;
+import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Chain;
 import org.bukkit.block.data.type.Stairs;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkLoadEvent;
+import org.bukkit.material.Directional;
 import org.bukkit.material.MaterialData;
 
 import java.util.ArrayList;
@@ -50,8 +55,8 @@ public class OutpostGeneration implements Listener {
         List types = new ArrayList<>();
         if(CCOutposts.get().getList("everything")!=null){
             everything=CCOutposts.get().getList("everything");
-            locs=CCOutposts.get().getList("locs");
-            types=CCOutposts.get().getList("types");
+            locs=CCOutposts.get().getList("loc");
+            types=CCOutposts.get().getList("Type");
 
         }
         everything.add(id);
@@ -73,11 +78,11 @@ public class OutpostGeneration implements Listener {
         locChain1.getBlock().setType(Material.CHAIN);
         Location locChain2 = new Location(middle.getWorld(), x1-1,y1,z1);
         locChain2.getBlock().setType(Material.CHAIN);
-        //THE ABOVE DONT NEED THE ROTATION EDIT, JUST 3-10
         Location locChain3 = new Location(middle.getWorld(), x1,y1,z1+1);
         locChain3.getBlock().setType(Material.CHAIN);
         Location locChain4 = new Location(middle.getWorld(), x1,y1,z1-1);
         locChain4.getBlock().setType(Material.CHAIN);
+        //EXCLUDE 5,6 CUZ ITS ALREADY ON Y Axis
         Location locChain5 = new Location(middle.getWorld(), x1,y1+1,z1);
         locChain5.getBlock().setType(Material.CHAIN);
         Location locChain6 = new Location(middle.getWorld(), x1,y1-1,z1);
@@ -91,8 +96,61 @@ public class OutpostGeneration implements Listener {
         Location locChain10 = new Location(middle.getWorld(), x1-2,y1,z1);
         locChain10.getBlock().setType(Material.CHAIN);
         //ROTTATING THE CHAINS 1.1
+        Block blockchain3 = locChain3.getBlock();
+        BlockState stateC3 = blockchain3.getState();
+        Chain chain3 = (Chain) stateC3.getBlockData();
+        chain3.setAxis(Axis.Z);
+        stateC3.setBlockData(chain3);
+        stateC3.update(false, false);
 
+        Block blockchain4 = locChain4.getBlock();
+        BlockState stateC4 = blockchain4.getState();
+        Chain chain4 = (Chain) stateC4.getBlockData();
+        chain4.setAxis(Axis.Z);
+        stateC4.setBlockData(chain4);
+        stateC4.update(false, false);
 
+        Block blockchain7 = locChain7.getBlock();
+        BlockState stateC7 = blockchain7.getState();
+        Chain chain7 = (Chain) stateC7.getBlockData();
+        chain7.setAxis(Axis.Z);
+        stateC7.setBlockData(chain7);
+        stateC7.update(false, false);
+
+        Block blockchain8 = locChain8.getBlock();
+        BlockState stateC8 = blockchain8.getState();
+        Chain chain8 = (Chain) stateC8.getBlockData();
+        chain8.setAxis(Axis.Z);
+        stateC8.setBlockData(chain4);
+        stateC8.update(false, false);
+
+        Block blockchain1 = locChain1.getBlock();
+        BlockState stateC1 = blockchain1.getState();
+        Chain chain1 = (Chain) stateC1.getBlockData();
+        chain1.setAxis(Axis.X);
+        stateC1.setBlockData(chain1);
+        stateC1.update(false, false);
+
+        Block blockchain2 = locChain2.getBlock();
+        BlockState stateC2 = blockchain2.getState();
+        Chain chain2 = (Chain) stateC2.getBlockData();
+        chain2.setAxis(Axis.X);
+        stateC2.setBlockData(chain2);
+        stateC2.update(false, false);
+
+        Block blockchain9 = locChain9.getBlock();
+        BlockState stateC9 = blockchain9.getState();
+        Chain chain9 = (Chain) stateC9.getBlockData();
+        chain9.setAxis(Axis.X);
+        stateC9.setBlockData(chain9);
+        stateC9.update(false, false);
+
+        Block blockchain10 = locChain10.getBlock();
+        BlockState stateC10 = blockchain10.getState();
+        Chain chain10 = (Chain) stateC10.getBlockData();
+        chain10.setAxis(Axis.X);
+        stateC10.setBlockData(chain10);
+        stateC10.update(false, false);
 
 
 
@@ -137,7 +195,34 @@ public class OutpostGeneration implements Listener {
         locStairs3.getBlock().setType(Material.BLACKSTONE_STAIRS);
         Location locStairs4 = new Location(middle.getWorld(), x1-3,y1+1,z1);
         locStairs4.getBlock().setType(Material.BLACKSTONE_STAIRS);
-        //SETTINGS STAIRS
+        //SETTINGS STAIRS ROTATION
+        Block blockStairs1 = locStairs1.getBlock();
+        BlockState state1 = blockStairs1.getState();
+        Stairs stairs1 = (Stairs) state1.getBlockData();
+        stairs1.setFacing(BlockFace.SOUTH);
+        state1.setBlockData(stairs1);
+        state1.update(false, false);
+
+        Block blockStairs3 = locStairs3.getBlock();
+        BlockState state3 = blockStairs3.getState();
+        Stairs stairs3 = (Stairs) state3.getBlockData();
+        stairs3.setFacing(BlockFace.WEST);
+        state3.setBlockData(stairs3);
+        state3.update(false, false);
+
+        Block blockStairs4 = locStairs4.getBlock();
+        BlockState state4 = blockStairs4.getState();
+        Stairs stairs4 = (Stairs) state4.getBlockData();
+        stairs4.setFacing(BlockFace.EAST);
+        state4.setBlockData(stairs4);
+        state4.update(false, false);
+
+
+
+
+
+        //stairs.setHalf(Bisected.Half.TOP);
+
         //BLACKSTONE STAIRS BEHIND THE STAIRS 1.0
         Location locStairs5 = new Location(middle.getWorld(), x1,y1+1,z1-2);
         locStairs5.getBlock().setType(Material.BLACKSTONE_STAIRS);
@@ -147,6 +232,40 @@ public class OutpostGeneration implements Listener {
         locStairs7.getBlock().setType(Material.BLACKSTONE_STAIRS);
         Location locStairs8 = new Location(middle.getWorld(), x1-2,y1+1,z1);
         locStairs8.getBlock().setType(Material.BLACKSTONE_STAIRS);
+        //ROTATING STAIRS 1.1
+
+        Block blockStairs5 = locStairs5.getBlock();
+        BlockState state5 = blockStairs5.getState();
+        Stairs stairs5 = (Stairs) state5.getBlockData();
+        stairs5.setFacing(BlockFace.NORTH);
+        stairs5.setHalf(Bisected.Half.TOP);
+        state5.setBlockData(stairs5);
+        state5.update(false, false);
+
+        Block blockStairs6 = locStairs6.getBlock();
+        BlockState state6 = blockStairs6.getState();
+        Stairs stairs6 = (Stairs) state6.getBlockData();
+        stairs6.setFacing(BlockFace.SOUTH);
+        stairs6.setHalf(Bisected.Half.TOP);
+        state6.setBlockData(stairs6);
+        state6.update(false, false);
+
+        Block blockStairs7 = locStairs7.getBlock();
+        BlockState state7 = blockStairs7.getState();
+        Stairs stairs7 = (Stairs) state7.getBlockData();
+        stairs7.setFacing(BlockFace.EAST);
+        stairs7.setHalf(Bisected.Half.TOP);
+        state7.setBlockData(stairs7);
+        state7.update(false, false);
+
+        Block blockStairs8 = locStairs8.getBlock();
+        BlockState state8 = blockStairs8.getState();
+        Stairs stairs8 = (Stairs) state8.getBlockData();
+        stairs8.setFacing(BlockFace.WEST);
+        stairs8.setHalf(Bisected.Half.TOP);
+        state8.setBlockData(stairs8);
+        state8.update(false, false);
+
         //CRACKED POLISHED BLACKSTONE BRICKS ABOVE STAIRS 1.0
         //BLACKSTONE STAIRS ABOVE CHISELEDS 1.0
         Location locBricks1 = new Location(middle.getWorld(), x1,y1+2,z1-2);
@@ -166,6 +285,50 @@ public class OutpostGeneration implements Listener {
         locBricks7.getBlock().setType(Material.CRACKED_POLISHED_BLACKSTONE_BRICKS);
         Location locBricks8 = new Location(middle.getWorld(), x1-1,y1+2,z1);
         locBricks8.getBlock().setType(Material.CRACKED_POLISHED_BLACKSTONE_BRICKS);
+
+        /*
+        //CHILSED 7-10
+        Location place1 = new Location(middle.getWorld(),locChiseled7.getBlockX(),locChiseled7.getBlockY()-2,locChiseled7.getBlockZ());
+        Location place2 = new Location(middle.getWorld(),locChiseled8.getBlockX(),locChiseled8.getBlockY()-2,locChiseled8.getBlockZ());
+        Location place3 = new Location(middle.getWorld(),locChiseled9.getBlockX(),locChiseled9.getBlockY()-2,locChiseled9.getBlockZ());
+        Location place4 = new Location(middle.getWorld(),locChiseled10.getBlockX(),locChiseled10.getBlockY()-2,locChiseled10.getBlockZ());
+
+        boolean place1Ended = false;
+        boolean place2Ended = false;
+        boolean place3Ended = false;
+        boolean place4Ended = false;
+        System.out.println(place1.getBlock().getType());
+        System.out.println(place2.getBlock().getType());
+        System.out.println(place3.getBlock().getType());
+        System.out.println(place4.getBlock().getType());
+        if(place1.getBlock().getType()==Material.AIR){
+           for(int i = 0; place1Ended; i--){
+               Location newone = new Location(middle.getWorld(),place1.getBlockX(),place1.getBlockY()-i,place1.getBlockZ());
+               System.out.println(newone+" p1");
+                   newone.getBlock().setType(Material.POLISHED_BLACKSTONE_BRICK_WALL);
+           }
+        }
+        if(place2.getBlock().getType()==Material.AIR){
+            for(int i = 0;place2Ended ;i--){
+                Location newone = new Location(middle.getWorld(),place2.getBlockX(),place2.getBlockY()-i,place2.getBlockZ());
+                System.out.println(newone+" p2");
+                    newone.getBlock().setType(Material.POLISHED_BLACKSTONE_BRICK_WALL);
+            }
+        }
+        if(place3.getBlock().getType()==Material.AIR){
+            for(int i = 0;place3Ended ;i--){
+                Location newone = new Location(middle.getWorld(),place3.getBlockX(),place3.getBlockY()-i,place3.getBlockZ());
+                System.out.println(newone+" p3");
+                    newone.getBlock().setType(Material.POLISHED_BLACKSTONE_BRICK_WALL);
+            }
+        }
+        if(place4.getBlock().getType()==Material.AIR){
+            for(int i = 0;place4Ended ;i--){
+                Location newone = new Location(middle.getWorld(),place4.getBlockX(),place4.getBlockY()-i,place4.getBlockZ());
+                System.out.println(newone+" p4");
+                    newone.getBlock().setType(Material.POLISHED_BLACKSTONE_BRICK_WALL);
+            }
+        }*/
 
     }
 
