@@ -1,6 +1,7 @@
 package me.dioforever.rpg.Customs.Outposts;
 
 import me.dioforever.rpg.files.CCOutposts;
+import me.dioforever.rpg.files.CCStats;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -25,22 +26,25 @@ public class BreakCoreListener implements Listener {
         String id = "x"+idx+"y"+idy+"z"+idz+loc.getWorld();
 
         if(CCOutposts.get().getList("everything").contains(id)){
-            Location locFile = CCOutposts.get().getLocation("loc."+id);
+            List everythings = CCOutposts.get().getList("everything");
+            int index = everythings.indexOf(id);
+            List locs = CCOutposts.get().getList("loc");
+            Location locFile = (Location) locs.get(index);
             if(locFile.getWorld()!=loc.getWorld()){
                 return;
             }
+            List types = CCOutposts.get().getList("Type");
             Player p =  e.getPlayer();
             p.sendMessage("You broke the core of the outpost!");
-            String type = CCOutposts.get().getString("Type."+id);
-            p.sendMessage(type);
-            List types = CCOutposts.get().getList("Type."+id);
-            List locs = CCOutposts.get().getList("loc."+id);
-            List everythings = CCOutposts.get().getList("everything");
-            int index = everythings.indexOf(id);
-            p.sendMessage(String.valueOf(index));
+            String type = (String) types.get(index);
+            //p.sendMessage(type);
+            p.sendMessage(String.valueOf(types));
+            p.sendMessage(String.valueOf(locs));
+            p.sendMessage(String.valueOf(everythings));
             types.remove(index);
             locs.remove(index);
             everythings.remove(index);
+
 
 
 

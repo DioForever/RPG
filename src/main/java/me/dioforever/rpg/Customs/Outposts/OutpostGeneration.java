@@ -46,17 +46,26 @@ public class OutpostGeneration implements Listener {
         }
 
         List everything = new ArrayList<>();
+        List locs = new ArrayList<>();
+        List types = new ArrayList<>();
         if(CCOutposts.get().getList("everything")!=null){
             everything=CCOutposts.get().getList("everything");
+            locs=CCOutposts.get().getList("locs");
+            types=CCOutposts.get().getList("types");
+
         }
         everything.add(id);
+        locs.add(middle);
+        types.add(type);
         if(CCOutposts.get().getList("everything")==null){
             CCOutposts.get().addDefault("everything",everything);
+            CCOutposts.get().addDefault("Type",types);
+            CCOutposts.get().addDefault("loc",locs);
         }else{
             CCOutposts.get().set("everything",everything);
+            CCOutposts.get().set("Type",types);
+            CCOutposts.get().set("loc",locs);
         }
-        CCOutposts.get().addDefault("Type."+id,type);
-        CCOutposts.get().addDefault("loc."+id,middle);
         CCOutposts.save();
 
         //CHAINS FROM CORE 1.0
