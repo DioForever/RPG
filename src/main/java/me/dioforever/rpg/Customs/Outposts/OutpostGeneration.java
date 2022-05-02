@@ -31,7 +31,7 @@ public class OutpostGeneration implements Listener {
         String idx = String.valueOf((int)x1);
         String idy = String.valueOf((int)y1);
         String idz = String.valueOf((int)z1);
-        String id = "x"+idx+"y"+idy+"z"+idz;
+        String id = "x"+idx+"y"+idy+"z"+idz+middle.getWorld();
 
         Random random = new Random();
         int rand = random.nextInt(2);
@@ -55,8 +55,8 @@ public class OutpostGeneration implements Listener {
         }else{
             CCOutposts.get().set("everything",everything);
         }
-        CCOutposts.get().addDefault(id+".Type",type);
-        CCOutposts.get().addDefault(id+".loc",middle);
+        CCOutposts.get().addDefault("Type."+id,type);
+        CCOutposts.get().addDefault("loc."+id,middle);
         CCOutposts.save();
 
         //CHAINS FROM CORE 1.0
