@@ -1,9 +1,7 @@
 package me.dioforever.rpg.Customs.Outposts;
 
 import me.dioforever.rpg.files.CCOutposts;
-import org.bukkit.Axis;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
@@ -23,11 +21,35 @@ import java.util.Random;
 public class OutpostGeneration implements Listener {
 
     public void onChunkLoad(ChunkLoadEvent e){
+        if(false)return;
+        Chunk chunk = e.getChunk();
+        Chunk chunk1 = e.getWorld().getChunkAt(chunk.getX()+1, chunk.getZ());
+        Chunk chunk2 = e.getWorld().getChunkAt(chunk.getX()-1, chunk.getZ());
+        Chunk chunk3 = e.getWorld().getChunkAt(chunk.getX()+1, chunk.getZ()-1);
+        Chunk chunk4 = e.getWorld().getChunkAt(chunk.getX()-1, chunk.getZ()+1);
+        Chunk chunk5 = e.getWorld().getChunkAt(chunk.getX()+1, chunk.getZ()+1);
+        Chunk chunk6 = e.getWorld().getChunkAt(chunk.getX()-1, chunk.getZ()-1);
+        Chunk chunk7 = e.getWorld().getChunkAt(chunk.getX()+1, chunk.getZ());
+        Chunk chunk8 = e.getWorld().getChunkAt(chunk.getX()-1, chunk.getZ());
+
+
+        if(CCOutposts.get().getList("Chunks")!=null){
+            List<Chunk> chunks = new ArrayList<>();
+            chunks.add(chunk);
+
+            if(!(CCOutposts.get().getList("Chunks").contains(chunk))){
+
+            }
+
+        }
 
 
     }
 
-    public static void spawnStructer(Location middle){
+    public static void spawnStructer(Location middle1){
+        Location middle = new Location(middle1.getWorld(),middle1.getBlockX(),middle1.getBlockY()-2,middle1.getBlockZ());
+        World world = middle.getWorld();
+        world.strikeLightningEffect(middle);
         //SpawnOutpost with the core inside
         middle.getBlock().setType(Material.CRYING_OBSIDIAN);
         double x1 = middle.getBlockX();;
@@ -53,23 +75,28 @@ public class OutpostGeneration implements Listener {
         List everything = new ArrayList<>();
         List locs = new ArrayList<>();
         List types = new ArrayList<>();
+        List chunks = new ArrayList<>();
         if(CCOutposts.get().getList("everything")!=null){
             everything=CCOutposts.get().getList("everything");
             locs=CCOutposts.get().getList("loc");
             types=CCOutposts.get().getList("Type");
+            chunks=CCOutposts.get().getList("Chunks");
 
         }
         everything.add(id);
         locs.add(middle);
         types.add(type);
+        chunks.add(middle.getChunk());
         if(CCOutposts.get().getList("everything")==null){
             CCOutposts.get().addDefault("everything",everything);
             CCOutposts.get().addDefault("Type",types);
             CCOutposts.get().addDefault("loc",locs);
+            CCOutposts.get().addDefault("Chunks",chunks);
         }else{
             CCOutposts.get().set("everything",everything);
             CCOutposts.get().set("Type",types);
             CCOutposts.get().set("loc",locs);
+            CCOutposts.get().set("Chunks",chunks);
         }
         CCOutposts.save();
 
@@ -285,51 +312,35 @@ public class OutpostGeneration implements Listener {
         locBricks7.getBlock().setType(Material.CRACKED_POLISHED_BLACKSTONE_BRICKS);
         Location locBricks8 = new Location(middle.getWorld(), x1-1,y1+2,z1);
         locBricks8.getBlock().setType(Material.CRACKED_POLISHED_BLACKSTONE_BRICKS);
+    }
+    public static Location getCenterChunkLocation(Chunk c){
+        Location center = new Location(c.getWorld(), c.getX() << 4, 64, c.getZ() << 4).add(8, 0, 8);
+        center.setY(center.getWorld().getHighestBlockYAt(center) + 1);
+        return center;
+    }
 
-        /*
-        //CHILSED 7-10
-        Location place1 = new Location(middle.getWorld(),locChiseled7.getBlockX(),locChiseled7.getBlockY()-2,locChiseled7.getBlockZ());
-        Location place2 = new Location(middle.getWorld(),locChiseled8.getBlockX(),locChiseled8.getBlockY()-2,locChiseled8.getBlockZ());
-        Location place3 = new Location(middle.getWorld(),locChiseled9.getBlockX(),locChiseled9.getBlockY()-2,locChiseled9.getBlockZ());
-        Location place4 = new Location(middle.getWorld(),locChiseled10.getBlockX(),locChiseled10.getBlockY()-2,locChiseled10.getBlockZ());
+    public static Location getSouthEast(Chunk chunk){
+        Location center = getCenterChunkLocation(chunk);
+        Location topLeft = center.clone().add(7.5, 0, 7.5);
+        return topLeft;
+    }
 
-        boolean place1Ended = false;
-        boolean place2Ended = false;
-        boolean place3Ended = false;
-        boolean place4Ended = false;
-        System.out.println(place1.getBlock().getType());
-        System.out.println(place2.getBlock().getType());
-        System.out.println(place3.getBlock().getType());
-        System.out.println(place4.getBlock().getType());
-        if(place1.getBlock().getType()==Material.AIR){
-           for(int i = 0; place1Ended; i--){
-               Location newone = new Location(middle.getWorld(),place1.getBlockX(),place1.getBlockY()-i,place1.getBlockZ());
-               System.out.println(newone+" p1");
-                   newone.getBlock().setType(Material.POLISHED_BLACKSTONE_BRICK_WALL);
-           }
-        }
-        if(place2.getBlock().getType()==Material.AIR){
-            for(int i = 0;place2Ended ;i--){
-                Location newone = new Location(middle.getWorld(),place2.getBlockX(),place2.getBlockY()-i,place2.getBlockZ());
-                System.out.println(newone+" p2");
-                    newone.getBlock().setType(Material.POLISHED_BLACKSTONE_BRICK_WALL);
-            }
-        }
-        if(place3.getBlock().getType()==Material.AIR){
-            for(int i = 0;place3Ended ;i--){
-                Location newone = new Location(middle.getWorld(),place3.getBlockX(),place3.getBlockY()-i,place3.getBlockZ());
-                System.out.println(newone+" p3");
-                    newone.getBlock().setType(Material.POLISHED_BLACKSTONE_BRICK_WALL);
-            }
-        }
-        if(place4.getBlock().getType()==Material.AIR){
-            for(int i = 0;place4Ended ;i--){
-                Location newone = new Location(middle.getWorld(),place4.getBlockX(),place4.getBlockY()-i,place4.getBlockZ());
-                System.out.println(newone+" p4");
-                    newone.getBlock().setType(Material.POLISHED_BLACKSTONE_BRICK_WALL);
-            }
-        }*/
+    public static Location getNorthEast(Chunk chunk){
+        Location center = getCenterChunkLocation(chunk);
+        Location topRight = center.clone().add(7.5, 0, -7.5);
+        return topRight;
+    }
 
+    public static Location getNorthWest(Chunk chunk){
+        Location center = getCenterChunkLocation(chunk);
+        Location bottomLeft = center.clone().add(-7.5, 0, -7.5);
+        return bottomLeft;
+    }
+
+    public static Location getSouthWest(Chunk chunk){
+        Location center = getCenterChunkLocation(chunk);
+        Location bottomRight = center.clone().add(-7.5, 0, 7.5);
+        return bottomRight;
     }
 
 }

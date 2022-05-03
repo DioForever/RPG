@@ -1,13 +1,23 @@
 package me.dioforever.rpg.CustomMobs.CreateEntities;
 
+import com.sun.org.apache.xpath.internal.operations.Or;
 import me.dioforever.rpg.Main;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Zombie;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
+import static me.dioforever.rpg.Utils.color;
+
 public class OrcChampion {
+
+    static Main plugin;
+    public  OrcChampion(Main main){
+        plugin = main;
+    }
 
 
     public static void SpawnOrcChampion(Player p, Location loc, int level){
@@ -44,6 +54,7 @@ public class OrcChampion {
         }
         customMobsStats.put(uuidOrcChampion,StatsOrcChamp);
         //Give him the stats
+        OrcChampion.setMaxHealth(level+10+(HealthStat));
         OrcChampion.setHealth(level+10+(HealthStat));
         //--FINISHED THE STATS PART
 
@@ -65,6 +76,22 @@ public class OrcChampion {
         }
         customMobsSkills.put(uuidOrcChampion,skillsOrcChamp);
         //--FINISHED SKILLS PART
+
+        //SET THE ORC CHAMPION
+        OrcChampion.setCustomName(color("&aOrc Champion"));
+        OrcChampion.setCustomNameVisible(true);
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if(!OrcChampion.isDead()){
+
+                }else{
+                    cancel();
+                }
+
+            }
+        }.runTaskTimer(plugin,0,20);
 
         //Give him armor
 
