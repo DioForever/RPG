@@ -1,18 +1,15 @@
 package me.dioforever.rpg.Customs.Outposts;
 
-import me.dioforever.rpg.files.CCOutposts;
+import me.dioforever.rpg.files.Outposts;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.data.Bisected;
-import org.bukkit.block.data.BlockData;
 import org.bukkit.block.data.type.Chain;
 import org.bukkit.block.data.type.Stairs;
 import org.bukkit.event.Listener;
 import org.bukkit.event.world.ChunkLoadEvent;
-import org.bukkit.material.Directional;
-import org.bukkit.material.MaterialData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,34 +17,14 @@ import java.util.Random;
 
 public class OutpostGeneration implements Listener {
 
+
     public void onChunkLoad(ChunkLoadEvent e){
-        if(false)return;
-        Chunk chunk = e.getChunk();
-        Chunk chunk1 = e.getWorld().getChunkAt(chunk.getX()+1, chunk.getZ());
-        Chunk chunk2 = e.getWorld().getChunkAt(chunk.getX()-1, chunk.getZ());
-        Chunk chunk3 = e.getWorld().getChunkAt(chunk.getX()+1, chunk.getZ()-1);
-        Chunk chunk4 = e.getWorld().getChunkAt(chunk.getX()-1, chunk.getZ()+1);
-        Chunk chunk5 = e.getWorld().getChunkAt(chunk.getX()+1, chunk.getZ()+1);
-        Chunk chunk6 = e.getWorld().getChunkAt(chunk.getX()-1, chunk.getZ()-1);
-        Chunk chunk7 = e.getWorld().getChunkAt(chunk.getX()+1, chunk.getZ());
-        Chunk chunk8 = e.getWorld().getChunkAt(chunk.getX()-1, chunk.getZ());
-
-
-        if(CCOutposts.get().getList("Chunks")!=null){
-            List<Chunk> chunks = new ArrayList<>();
-            chunks.add(chunk);
-
-            if(!(CCOutposts.get().getList("Chunks").contains(chunk))){
-
-            }
-
-        }
-
 
     }
 
     public static void spawnStructer(Location middle1){
         Location middle = new Location(middle1.getWorld(),middle1.getBlockX(),middle1.getBlockY()-2,middle1.getBlockZ());
+
         World world = middle.getWorld();
         world.strikeLightningEffect(middle);
         //SpawnOutpost with the core inside
@@ -59,6 +36,7 @@ public class OutpostGeneration implements Listener {
         String idy = String.valueOf((int)y1);
         String idz = String.valueOf((int)z1);
         String id = "x"+idx+"y"+idy+"z"+idz+middle.getWorld();
+
 
         Random random = new Random();
         int rand = random.nextInt(2);
@@ -76,29 +54,30 @@ public class OutpostGeneration implements Listener {
         List locs = new ArrayList<>();
         List types = new ArrayList<>();
         List chunks = new ArrayList<>();
-        if(CCOutposts.get().getList("everything")!=null){
-            everything=CCOutposts.get().getList("everything");
-            locs=CCOutposts.get().getList("loc");
-            types=CCOutposts.get().getList("Type");
-            chunks=CCOutposts.get().getList("Chunks");
+        if(Outposts.get().getList("everything")!=null){
+            everything=Outposts.get().getList("everything");
+            locs=Outposts.get().getList("loc");
+            types=Outposts.get().getList("Type");
+            chunks=Outposts.get().getList("Chunks");
 
         }
         everything.add(id);
         locs.add(middle);
         types.add(type);
         chunks.add(middle.getChunk());
-        if(CCOutposts.get().getList("everything")==null){
-            CCOutposts.get().addDefault("everything",everything);
-            CCOutposts.get().addDefault("Type",types);
-            CCOutposts.get().addDefault("loc",locs);
-            CCOutposts.get().addDefault("Chunks",chunks);
+        if(Outposts.get().getList("everything")==null){
+            Outposts.get().addDefault("everything",everything);
+            Outposts.get().addDefault("Type",types);
+            Outposts.get().addDefault("loc",locs);
+            Outposts.get().addDefault("Chunks",chunks);
         }else{
-            CCOutposts.get().set("everything",everything);
-            CCOutposts.get().set("Type",types);
-            CCOutposts.get().set("loc",locs);
-            CCOutposts.get().set("Chunks",chunks);
+            Outposts.get().set("everything",everything);
+            Outposts.get().set("Type",types);
+            Outposts.get().set("loc",locs);
+            Outposts.get().set("Chunks",chunks);
         }
-        CCOutposts.save();
+        Outposts.save();
+
 
         //CHAINS FROM CORE 1.0
         Location locChain1 = new Location(middle.getWorld(), x1+1,y1,z1);
@@ -313,6 +292,7 @@ public class OutpostGeneration implements Listener {
         Location locBricks8 = new Location(middle.getWorld(), x1-1,y1+2,z1);
         locBricks8.getBlock().setType(Material.CRACKED_POLISHED_BLACKSTONE_BRICKS);
     }
+    /*
     public static Location getCenterChunkLocation(Chunk c){
         Location center = new Location(c.getWorld(), c.getX() << 4, 64, c.getZ() << 4).add(8, 0, 8);
         center.setY(center.getWorld().getHighestBlockYAt(center) + 1);
@@ -342,6 +322,7 @@ public class OutpostGeneration implements Listener {
         Location bottomRight = center.clone().add(-7.5, 0, 7.5);
         return bottomRight;
     }
+    */
 
 }
 

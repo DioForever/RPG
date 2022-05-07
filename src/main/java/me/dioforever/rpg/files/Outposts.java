@@ -7,9 +7,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.IOException;
 
-public class CCOutposts {
+public class Outposts {
 
-    //Outpost
+    //Stats
     private static File filePlayerInfo;
     private static FileConfiguration customfilePlayerInfo;
 

@@ -109,8 +109,8 @@ public final class Main extends JavaPlugin {
         CCPlayerInfo.setup();
         CCCombos.setup();
         CCAchieved.setup();
-        CCOutposts.setup();
-        CCOutposts.get().options().copyDefaults(true);
+        Outposts.setup();
+        Outposts.get().options().copyDefaults(true);
         CCOn.get().options().copyDefaults(true);
         CCLeft.get().options().copyDefaults(true);
         CCGuilds.get().options().copyDefaults(true);
@@ -123,7 +123,7 @@ public final class Main extends JavaPlugin {
         CCAchieved.get().options().copyDefaults(true);
         CCGuilds.get().addDefault("Guilds",test3);
         CCGuilds.get().addDefault("GuildJoined",test4);
-        CCOutposts.save();
+        Outposts.save();
         CCOn.save();
         CCLeft.save();
         PluginSettings.save();
@@ -213,7 +213,7 @@ public final class Main extends JavaPlugin {
         getCommand("Seth").setExecutor(new SummonCmd());
 
 
-        BukkitTask temporaryStats = new TwistedSunAndMoon().runTaskTimer(this,0,20*30);
+        //BukkitTask temporaryStats = new TwistedSunAndMoon().runTaskTimer(this,0,20*30);
 
 
         //
@@ -245,6 +245,7 @@ public final class Main extends JavaPlugin {
                 CCGuilds.save();
                 CCMagic.save();
                 PluginSettings.save();
+                Outposts.save();
             }
         }.runTaskTimer(this,0,12000);
 
@@ -262,6 +263,11 @@ public final class Main extends JavaPlugin {
         CCPlayerInfo.save();
         PluginSettings.save();
         CCAchieved.save();
+        Outposts.save();
+        CCLeft.save();
+        CCAchieved.save();
+        CCCombos.save();
+        CCGuilds.save();
     }
     int count = 0;
     int count1 = 0;
