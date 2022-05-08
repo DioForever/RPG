@@ -72,9 +72,9 @@ public class Cryomancer implements Listener {
         System.out.println(Cryomancer.getLocation().getBlockX());
         System.out.println(Cryomancer.getLocation().getBlockY());
         System.out.println(Cryomancer.getLocation().getBlockZ());
-        world.spawnParticle(Particle.SNOWBALL,loc,100,0,20,0);
-        world.spawnParticle(Particle.SNOW_SHOVEL,loc,100,0,20,0);
-        world.spawnParticle(Particle.SNOWFLAKE,loc,100,0,20,0);
+        world.spawnParticle(Particle.SNOWBALL,loc,100,0,0,0);
+        world.spawnParticle(Particle.SNOW_SHOVEL,loc,100,0,0,0);
+        world.spawnParticle(Particle.SNOWFLAKE,loc,100,0,0,0);
         //world.spawnParticle(Particle.CAMPFIRE_SIGNAL_SMOKE,loc,100,0,20,0);
         System.out.println("Rime of Winter my boi");
     }
