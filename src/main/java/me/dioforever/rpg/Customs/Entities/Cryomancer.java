@@ -1,13 +1,14 @@
 package me.dioforever.rpg.Customs.Entities;
 
 import me.dioforever.rpg.Main;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
+
+import static me.dioforever.rpg.Utils.color;
 
 public class Cryomancer implements Listener {
     /*
@@ -26,12 +27,14 @@ public class Cryomancer implements Listener {
      */
 
     static Main plugin;
-    public  Cryomancer(Main main){
+    public Cryomancer(Main main){
         plugin = main;
     }
 
     public static void spawnCryomancer(Location spawnLoc){
         Skeleton Cryomancer = spawnLoc.getWorld().spawn(spawnLoc, Skeleton.class);
+        Cryomancer.setCustomNameVisible(true);
+        Cryomancer.setCustomName(color("&bCryomancer"));
         Cryomancer.getEquipment().getItemInMainHand().setType(Material.AIR);
         Cryomancer.getEquipment().getItemInMainHand().setAmount(0);
 
@@ -40,6 +43,7 @@ public class Cryomancer implements Listener {
             @Override
             public void run() {
                 if(!Cryomancer.isDead()){
+                        RimeOfWinter(Cryomancer);
                     if(cooldownRimeFrost!=0){
                         //not yet
                         cooldownRimeFrost--;
@@ -51,7 +55,7 @@ public class Cryomancer implements Listener {
 
 
                 }else{
-                    cancel();
+                    this.cancel();
                 }
 
             }
@@ -61,6 +65,18 @@ public class Cryomancer implements Listener {
     public static void RimeOfFrost(Skeleton Cryomancer){
         Entity entities = (Entity) Cryomancer.getNearbyEntities(20,20,20);
 
+    }
+    public static void RimeOfWinter(Skeleton Cryomancer){
+        Location loc = Cryomancer.getLocation();
+        World world = loc.getWorld();
+        System.out.println(Cryomancer.getLocation().getBlockX());
+        System.out.println(Cryomancer.getLocation().getBlockY());
+        System.out.println(Cryomancer.getLocation().getBlockZ());
+        world.spawnParticle(Particle.SNOWBALL,loc,100,0,20,0);
+        world.spawnParticle(Particle.SNOW_SHOVEL,loc,100,0,20,0);
+        world.spawnParticle(Particle.SNOWFLAKE,loc,100,0,20,0);
+        //world.spawnParticle(Particle.CAMPFIRE_SIGNAL_SMOKE,loc,100,0,20,0);
+        System.out.println("Rime of Winter my boi");
     }
 
 }

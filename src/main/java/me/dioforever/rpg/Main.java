@@ -1,6 +1,7 @@
 package me.dioforever.rpg;
 
 import me.dioforever.rpg.CustomHealth.HealListener;
+import me.dioforever.rpg.Customs.Entities.Cryomancer;
 import me.dioforever.rpg.Customs.Outposts.BreakCoreListener;
 import me.dioforever.rpg.Leveling.FarmMineListener;
 import me.dioforever.rpg.Leveling.FishingListener;
@@ -191,6 +192,9 @@ public final class Main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new UniqueSkillsLeveling(this),this);
         getServer().getPluginManager().registerEvents(new RecipeInvListener(),this);
         getServer().getPluginManager().registerEvents(new MonsterCodex(),this);
+
+        //Monsters
+        getServer().getPluginManager().registerEvents(new Cryomancer(this),this);
 
 
         getCommand("updates").setExecutor(new Updates());

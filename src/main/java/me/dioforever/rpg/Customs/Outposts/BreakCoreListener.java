@@ -1,5 +1,6 @@
 package me.dioforever.rpg.Customs.Outposts;
 
+import me.dioforever.rpg.Customs.Entities.Cryomancer;
 import me.dioforever.rpg.files.Outposts;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -48,9 +49,14 @@ public class BreakCoreListener implements Listener {
             switch (type) {
                 case "goblin":
                     //OrcChampion.SpawnOrcChampion(p,location,10);
+                    Cryomancer.spawnCryomancer(location);
+                    p.sendMessage("ss");
                     break;
                 case "orc":
                     //OrcChampion.SpawnOrcChampion(p,location,10);
+                    Cryomancer.spawnCryomancer(location);
+                    p.sendMessage("ss");
+
                     break;
             }
 
