@@ -9,37 +9,37 @@ import java.io.IOException;
 
 public class Outposts {
 
-    //Stats
-    private static File filePlayerInfo;
-    private static FileConfiguration customfilePlayerInfo;
+    //Outposts
+    private static File fileOutposts;
+    private static FileConfiguration customfileOutposts;
 
 
     //Finds or generates custom config file
     public static void setup(){
 
-        filePlayerInfo = new File(Bukkit.getServer().getPluginManager().getPlugin("RPG").getDataFolder(), "outposts.yml");
+        fileOutposts = new File(Bukkit.getServer().getPluginManager().getPlugin("RPG").getDataFolder(), "outposts.yml");
 
-        if(!filePlayerInfo.exists()){
+        if(!fileOutposts.exists()){
             try{
-                filePlayerInfo.createNewFile();
+                fileOutposts.createNewFile();
             } catch (IOException e){
 
             }
 
         }
-        customfilePlayerInfo = YamlConfiguration.loadConfiguration(filePlayerInfo);
+        customfileOutposts = YamlConfiguration.loadConfiguration(fileOutposts);
 
     }
 
     //Getting it at other places
     public static FileConfiguration get(){
-        return customfilePlayerInfo;
+        return customfileOutposts;
     }
 
     //Saving
     public static void save(){
         try {
-            customfilePlayerInfo.save(filePlayerInfo);
+            customfileOutposts.save(fileOutposts);
         }catch (IOException e){
             System.out.println("Couldn´t save your file (outposts.yml)");
         }
@@ -47,7 +47,7 @@ public class Outposts {
     }
 
     public static void reload(){
-        customfilePlayerInfo = YamlConfiguration.loadConfiguration(filePlayerInfo);
+        customfileOutposts = YamlConfiguration.loadConfiguration(fileOutposts);
     }
 
 }

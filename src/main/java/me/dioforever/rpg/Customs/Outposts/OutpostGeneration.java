@@ -58,7 +58,7 @@ public class OutpostGeneration implements Listener {
             everything=Outposts.get().getList("everything");
             locs=Outposts.get().getList("loc");
             types=Outposts.get().getList("Type");
-            chunks=Outposts.get().getList("Chunks");
+            //chunks=Outposts.get().getList("Chunks");
 
         }
         everything.add(id);
@@ -69,12 +69,12 @@ public class OutpostGeneration implements Listener {
             Outposts.get().addDefault("everything",everything);
             Outposts.get().addDefault("Type",types);
             Outposts.get().addDefault("loc",locs);
-            Outposts.get().addDefault("Chunks",chunks);
+            //Outposts.get().addDefault("Chunks",chunks);
         }else{
             Outposts.get().set("everything",everything);
             Outposts.get().set("Type",types);
             Outposts.get().set("loc",locs);
-            Outposts.get().set("Chunks",chunks);
+            //Outposts.get().set("Chunks",chunks);
         }
         Outposts.save();
 

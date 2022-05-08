@@ -8,6 +8,8 @@ import org.bukkit.entity.Skeleton;
 import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.List;
+
 import static me.dioforever.rpg.Utils.color;
 
 public class Cryomancer implements Listener {
@@ -68,14 +70,27 @@ public class Cryomancer implements Listener {
     }
     public static void RimeOfWinter(Skeleton Cryomancer){
         Location loc = Cryomancer.getLocation();
+        Location test = new Location(loc.getWorld(),-310,73,-154);
         World world = loc.getWorld();
         System.out.println(Cryomancer.getLocation().getBlockX());
         System.out.println(Cryomancer.getLocation().getBlockY());
         System.out.println(Cryomancer.getLocation().getBlockZ());
-        world.spawnParticle(Particle.SNOWBALL,loc,100,0,0,0);
-        world.spawnParticle(Particle.SNOW_SHOVEL,loc,100,0,0,0);
-        world.spawnParticle(Particle.SNOWFLAKE,loc,100,0,0,0);
-        //world.spawnParticle(Particle.CAMPFIRE_SIGNAL_SMOKE,loc,100,0,20,0);
+        world.spawnParticle(Particle.SNOWFLAKE,loc,2000,20,20,20);
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                world.spawnParticle(Particle.SNOWFLAKE,loc,1000,20,20,20);
+            }
+        }.runTaskLater(plugin,10);
+        List<Entity> nearbyEntites = (List<Entity>) Cryomancer.getWorld().getNearbyEntities(loc, 8, 8, 8);
+        for(int i =0;i<nearbyEntites.size();i++){
+            if(nearbyEntites.get(i) instanceof Player){
+                Player player = (Player) nearbyEntites.get(i);
+                player.setFreezeTicks(160);
+            }
+        }
+
+
         System.out.println("Rime of Winter my boi");
     }
 

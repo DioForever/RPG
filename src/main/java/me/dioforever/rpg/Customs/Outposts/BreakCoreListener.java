@@ -31,7 +31,7 @@ public class BreakCoreListener implements Listener {
             List everythings = Outposts.get().getList("everything");
             int index = everythings.indexOf(id);
             List locs = Outposts.get().getList("loc");
-            List chunks = Outposts.get().getList("Chunks");
+            //List chunks = Outposts.get().getList("Chunks");
             Location locFile = (Location) locs.get(index);
             if (locFile.getWorld() != loc.getWorld()) {
                 return;
@@ -41,7 +41,7 @@ public class BreakCoreListener implements Listener {
             p.sendMessage("You broke the core of the outpost!");
             String type = (String) types.get(index);
             //p.sendMessage(type);
-            chunks.remove(index);
+            //chunks.remove(index);
             types.remove(index);
             locs.remove(index);
             everythings.remove(index);
