@@ -1,10 +1,18 @@
 package me.dioforever.rpg;
 
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.Mob;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class Utils {
+    public static List<String> monsters = new ArrayList<>();
 
     private static Logger logger = Main.getPluginLogger();
 
@@ -34,5 +42,18 @@ public class Utils {
         for(String message : messages){
             logger.severe(message);
         }
+    }
+
+    public static void dealDamage(Entity damager, Entity victim, Double damage, String cause){
+        if(victim instanceof Player){
+            //Check his stats and his skills
+        }
+        if(victim.getCustomName()!=null){
+            if(monsters.contains(victim.getCustomName())){
+                //Is one of the monsters
+            }
+
+        }
+
     }
 }
