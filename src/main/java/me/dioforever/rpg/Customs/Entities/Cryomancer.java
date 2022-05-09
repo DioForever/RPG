@@ -15,6 +15,8 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.List;
 
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 import static me.dioforever.rpg.Utils.color;
 
 public class Cryomancer implements Listener {
@@ -23,13 +25,14 @@ public class Cryomancer implements Listener {
     Skills:
         Shatter: Upon death, creates ice explosion and deals damage
         Frozen Touch: Every hit from C. will freeze player for a second
-        Rime of Winter: Makes the weather to snow and snow deals damage
-        Rime of Frost: Spell that Cryomancer casts once a minute, it will freeze everyone near 20blocks of her
+        +Rime of Winter: Makes the weather to snow and snow deals damage
+        +Rime of Frost: Spell that Cryomancer casts once a minute, it will freeze everyone near 20blocks of her
             and deal them continuous damage for 3seconds of 30HP per hit
                 - will appear as white particles
         Mark of Frost: [Normal Attack] every 2 seconds all players get attacked by a Cold ray --> deals 10HP per hit -> gives Freezing effect
         Cold Snap: Spell that Cryomancer casts once per 10-20 seconds, it will make a wave that deals 15HP, however it doesnt go through blocks
-        Glacial Wreath: Once the Cryomancer has 20% HP left this skill will be activated, it will make her invulnerable for 15 seconds while casting
+        Glacial Wreath: Once the Cryomancer has 20% HP left this skill will be activated, it will make her invulnerable for 15 seconds and put them in ice, while using
+            Cold Snap,Mark of Frost, Rime of Frost
         Frozen Minions: Summons the Ice Golems 2x that will be her minions, summons them once she spawns and summon them every 1 to 2 minutes
      */
 
@@ -47,10 +50,13 @@ public class Cryomancer implements Listener {
 
         new BukkitRunnable() {
             int cooldownRimeFrost = 63;
+            int cooldownColdSnap = 10;
+            boolean coldSnap = false;
             @Override
             public void run() {
                 if(!Cryomancer.isDead()){
                         RimeOfWinter(Cryomancer);
+                        //Rime of Frost
                     if(cooldownRimeFrost!=0){
                         //not yet
                         cooldownRimeFrost--;
@@ -59,11 +65,33 @@ public class Cryomancer implements Listener {
                         cooldownRimeFrost=63;
                         RimeOfFrost(Cryomancer);
                     }
+                    //--Rime of Frost
+                    //Cold Snap
+                    if(!(cooldownColdSnap<=0)){
+                        cooldownColdSnap--;
+                    }else{
+                        //Check if there is a player to attack
+                        List<Entity> nearby =Cryomancer.getNearbyEntities(20,20,20);
+                        for(int i =0;i<nearby.size();i++){
+                            if(nearby.get(i) instanceof Player){
+                                coldSnap=true;
+                            }
+                        }
+                        if(coldSnap){
+                            cooldownColdSnap=10;
+                            ColdSnap(Cryomancer);
+                            coldSnap=false;
+                        }
+                    }
+                    //--Cold Snap
+
 
 
                 }else{
                     this.cancel();
                 }
+                System.out.println(cooldownColdSnap);
+                System.out.println(coldSnap);
                 System.out.println(cooldownRimeFrost);
 
             }
@@ -113,9 +141,17 @@ public class Cryomancer implements Listener {
             if(nearbyEntites.get(i) instanceof Player){
                 Player victim = (Player) nearbyEntites.get(i);
                 Utils.dealDamage(Cryomancer,victim,0.5, "Freeze");
+                //victim.setFreezeTicks(160);
             }
         }
     }
+    public static void ColdSnap(Stray Cryomancer){
+
+
+        System.out.println("Cold Snap");
+
+    }
+
 
 }
 
