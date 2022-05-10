@@ -2,6 +2,10 @@ package me.dioforever.rpg.Customs.Entities;
 
 import me.dioforever.rpg.Main;
 import me.dioforever.rpg.Utils;
+import me.dioforever.rpg.files.CCPlayerInfo;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.*;
@@ -13,6 +17,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static java.lang.Math.cos;
@@ -26,14 +31,17 @@ public class Cryomancer implements Listener {
         Shatter: Upon death, creates ice explosion and deals damage
         Frozen Touch: Every hit from C. will freeze player for a second
         +Rime of Winter: Makes the weather to snow and snow deals damage
-        +Rime of Frost: Spell that Cryomancer casts once a minute, it will freeze everyone near 20blocks of her
+        +Rime of Frost (Skill): Spell that Cryomancer casts once a minute, it will freeze everyone near 20blocks of her
             and deal them continuous damage for 3seconds of 30HP per hit
                 - will appear as white particles
         Mark of Frost: [Normal Attack] every 2 seconds all players get attacked by a Cold ray --> deals 10HP per hit -> gives Freezing effect
-        +Cold Snap: Spell that Cryomancer casts once per 10-20 seconds, it will make a wave that deals 15HP, however it doesnt go through blocks
+        +Cold Snap (Skill): Spell that Cryomancer casts once per 10-20 seconds, it will make a wave that deals 15HP, however it doesnt go through blocks
         Glacial Wreath: Once the Cryomancer has 20% HP left this skill will be activated, it will make her invulnerable for 15 seconds and put them in ice, while using
             Cold Snap,Mark of Frost, Rime of Frost, Change to
+        Cold Blood: 50% ice resistance
         Frozen Minions: Summons the Ice Golems 2x that will be her minions, summons them once she spawns and summon them every 1 to 2 minutes
+        Ring of Ice (Magic): makes a ring around 3 blocks wide and will expand to 5 blocks away and deal damage of 15HP to whoever is there
+
      */
 
     static Main plugin;
@@ -47,6 +55,33 @@ public class Cryomancer implements Listener {
         Cryomancer.setCustomName(color("&bCryomancer"));
         ItemStack air = new ItemStack(Material.AIR,1);
         Cryomancer.getEquipment().setItemInMainHand(air);
+        BossBar bossBar = Bukkit.createBossBar(color("&bCryomancer"), BarColor.YELLOW, BarStyle.SEGMENTED_10);
+
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                bossBar.removeAll();
+                if(Cryomancer.isDead()) {
+                    cancel();
+                }else{
+                    List<Entity> nearby =Cryomancer.getNearbyEntities(20,20,20);
+                    double health = Cryomancer.getHealth();
+                    double healthMAX = Cryomancer.getMaxHealth();
+                    double percent = health/healthMAX;
+
+                    bossBar.setProgress(percent);
+                    bossBar.removeAll();
+                    for (Entity entity : nearby) {
+                        if (entity instanceof Player) {
+                            Player player = (Player) entity;
+                            bossBar.addPlayer(player);
+                        }
+                    }
+                }
+
+
+            }
+        }.runTaskTimer(plugin,0,20);
 
         new BukkitRunnable() {
             int cooldownRimeFrost = 63;
