@@ -13,10 +13,12 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Stray;
 import org.bukkit.event.Listener;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import java.lang.reflect.Modifier;
 import java.util.HashMap;
 import java.util.List;
 
@@ -56,6 +58,11 @@ public class Cryomancer implements Listener {
         ItemStack air = new ItemStack(Material.AIR,1);
         Cryomancer.getEquipment().setItemInMainHand(air);
         BossBar bossBar = Bukkit.createBossBar(color("&bCryomancer"), BarColor.YELLOW, BarStyle.SEGMENTED_10);
+        ItemStack helmet = new ItemStack(Material.IRON_HELMET);
+        ItemMeta helmetMeta = helmet.getItemMeta();;
+        helmetMeta.setUnbreakable(true);
+        helmet.setItemMeta(helmetMeta);
+        Cryomancer.getEquipment().setHelmet(helmet);
 
         new BukkitRunnable() {
             @Override
@@ -133,6 +140,8 @@ public class Cryomancer implements Listener {
         }.runTaskTimer(plugin,0,20);
 
     }
+
+
     public static void RimeOfFrost(Stray Cryomancer){
         //Spell that Cryomancer casts once a minute, it will freeze everyone near 20blocks of her
         //            and deal them continuous damage for 3seconds of 30HP per hit
@@ -146,7 +155,9 @@ public class Cryomancer implements Listener {
                         Player victim = (Player) entities.get(i);
                         Utils.dealDamage(Cryomancer,victim,3.0, "Freeze");
                         PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW,25,100,true,false,false);
+                        PotionEffect blindness = new PotionEffect(PotionEffectType.BLINDNESS,25,100,true,false,false);
                         victim.addPotionEffect(slowness);
+                        victim.addPotionEffect(blindness);
                     }
                 }
                 if(count==0){
