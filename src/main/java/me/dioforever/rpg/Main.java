@@ -209,6 +209,7 @@ public final class Main extends JavaPlugin {
         getCommand("givexp").setExecutor(new givexp());
         getCommand("racechange").setExecutor(new racechange());
         getCommand("spawnoutpost").setExecutor(new spawnStructer());
+        getCommand("spawnparticle").setExecutor(new spawnparticle(this));
 
         //Races
         getCommand("races").setExecutor(new Races());

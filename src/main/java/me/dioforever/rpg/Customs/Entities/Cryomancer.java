@@ -30,9 +30,9 @@ public class Cryomancer implements Listener {
             and deal them continuous damage for 3seconds of 30HP per hit
                 - will appear as white particles
         Mark of Frost: [Normal Attack] every 2 seconds all players get attacked by a Cold ray --> deals 10HP per hit -> gives Freezing effect
-        Cold Snap: Spell that Cryomancer casts once per 10-20 seconds, it will make a wave that deals 15HP, however it doesnt go through blocks
+        +Cold Snap: Spell that Cryomancer casts once per 10-20 seconds, it will make a wave that deals 15HP, however it doesnt go through blocks
         Glacial Wreath: Once the Cryomancer has 20% HP left this skill will be activated, it will make her invulnerable for 15 seconds and put them in ice, while using
-            Cold Snap,Mark of Frost, Rime of Frost
+            Cold Snap,Mark of Frost, Rime of Frost, Change to
         Frozen Minions: Summons the Ice Golems 2x that will be her minions, summons them once she spawns and summon them every 1 to 2 minutes
      */
 
@@ -71,10 +71,10 @@ public class Cryomancer implements Listener {
                         cooldownColdSnap--;
                     }else{
                         //Check if there is a player to attack
-                        List<Entity> nearby =Cryomancer.getNearbyEntities(20,20,20);
-                        for(int i =0;i<nearby.size();i++){
-                            if(nearby.get(i) instanceof Player){
-                                coldSnap=true;
+                        List<Entity> nearby =Cryomancer.getNearbyEntities(4,4,4);
+                        for (Entity entity : nearby) {
+                            if (entity instanceof Player) {
+                                coldSnap = true;
                             }
                         }
                         if(coldSnap){
@@ -146,13 +146,50 @@ public class Cryomancer implements Listener {
         }
     }
     public static void ColdSnap(Stray Cryomancer){
-
+        new BukkitRunnable() {
+            int l =1;
+            @Override
+            public void run() {
+                Location location = Cryomancer.getLocation();
+                location.add(0,1,0);
+                for (double i = 0; i <= Math.PI; i += Math.PI / 10) {
+                    double radius = Math.sin(i);
+                    double y = Math.cos(i)*l;
+                    for (double a = 0; a < Math.PI * 2; a+= Math.PI / 10) {
+                        double x = Math.cos(a) * radius*l;
+                        double z = Math.sin(a) * radius*l;
+                        location.add(x, y, z);
+                        Particle.DustOptions dustOptions = new Particle.DustOptions(Color.WHITE,0.8F);
+                        Cryomancer.getWorld().spawnParticle(Particle.REDSTONE,location,1,dustOptions);
+                        List<Entity> nearby = (List<Entity>) location.getWorld().getNearbyEntities(location,0.1,0.1,0.1);
+                        for(int k=0;k<nearby.size();k++){
+                            Entity entity = nearby.get(k);
+                            Utils.dealDamage(Cryomancer,entity,15.0,"freeze");
+                            if(entity instanceof Player){
+                                Player p = (Player) entity;
+                                p.sendMessage("Emotional DAMAGE");
+                            }
+                        }
+                        location.subtract(x, y, z);
+                    }
+                }
+                l++;
+                if(l>5)cancel();
+            }
+        }.runTaskTimer(plugin,0,1);
 
         System.out.println("Cold Snap");
 
     }
+    public static void MarkofFrost(Stray Cryomancer){
 
+    }
+    public static void GlacialWreath(Stray Cryomancer){
 
+    }
+    public static void FrozenMinions(Stray Cryomancer){
+
+    }
 }
 
 

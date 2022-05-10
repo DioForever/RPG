@@ -64,3 +64,5 @@ commands:
       - racechange Dwarf
   spawnoutpost:
     description: Spawns an outpost
+  spawnparticle:
+    description: Spawns particle
