@@ -6,6 +6,7 @@ import me.dioforever.rpg.files.CCPlayerInfo;
 import org.bukkit.boss.BarColor;
 import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
+import org.bukkit.entity.PolarBear;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.*;
@@ -44,6 +45,9 @@ public class Cryomancer implements Listener {
             Cold Snap,Mark of Frost, Rime of Frost, Change to
         Cold Blood: 50% ice resistance
         Frozen Minions: Summons the Ice Golems 2x that will be her minions, summons them once she spawns and summon them every 1 to 2 minutes
+                Frozen Bear - skills: Predator -> when hunting someone, is faster than the prey by 20%
+                                      Frozen claws -> upon hit, the damage will be dealt and the freeze effect will be added to the player
+                                      Shatter
         Ring of Ice (Magic): makes a ring around 3 blocks wide and will expand to 5 blocks away and deal damage of 15HP to whoever is there
 
      */
@@ -235,8 +239,51 @@ public class Cryomancer implements Listener {
     public static void GlacialWreath(Stray Cryomancer){
 
     }
-    public static void FrozenMinions(Stray Cryomancer){
+    public static void FrozenMinions(PolarBear Cryomancer){
+        Location spawnLoc1 = Cryomancer.getLocation().add(2,0,3);
+        Location spawnLoc2 = Cryomancer.getLocation().add(2,0,-3);
 
+        PolarBear FrozenM1 = spawnLoc1.getWorld().spawn(spawnLoc1, PolarBear.class);
+        FrozenM1.setCustomNameVisible(true);
+        FrozenM1.setCustomName(color("&Frozen Bear"));
+
+        PolarBear FrozenM2 = spawnLoc2.getWorld().spawn(spawnLoc2, PolarBear.class);
+        FrozenM2.setCustomNameVisible(true);
+        FrozenM2.setCustomName(color("&Frozen Bear"));
+
+        //Minion 1
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                if(!FrozenM1.isDead()){
+                    FrozenM1.setAware(true);
+                    FrozenM1.setLeashHolder(null);
+                    //Predator skill
+                    if(FrozenM1.getTarget()!=null){
+                        Entity target = FrozenM1.getTarget();
+                        if(target instanceof Player){
+                            Player p = (Player) target;
+                            double speedPlayer = p.getWalkSpeed();
+                            double speed = speedPlayer*1.2;
+
+                        }
+                    }
+                    //-- Predator skill
+
+                }else{
+                    this.cancel();
+                }
+
+            }
+        }.runTaskTimer(plugin,0,20);
+
+        //Minion 2
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+
+            }
+        }.runTaskTimer(plugin,0,20);
     }
 }
 
