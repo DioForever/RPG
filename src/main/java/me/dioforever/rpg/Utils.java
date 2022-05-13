@@ -45,17 +45,24 @@ public class Utils {
             logger.severe(message);
         }
     }
+    //Causes:
+    /*
+    fire
+    ice
+    lightning
+    earth  (physical resistance)
+    metal (physical resistance)
+    water
+    wind
+    void -> no resistance works against it
+    divine -> no resistance works
+     */
 
     public static void damagePlayer(Entity damager, Player victim, int damage, String cause){
-        if(victim instanceof Player){
             //Check his stats and his skills
-        }
-        if(victim.getCustomName()!=null){
-            if(monsters.contains(victim.getCustomName())){
-                //Is one of the monsters
-            }
+            double resistance = getFireResistance(victim);
+            victim.damage(((double)damage/5)-resistance);
 
-        }
 
     }
     public static void damageEntity(Entity damager, Entity victim, int damage, String cause){
@@ -83,6 +90,10 @@ public class Utils {
                     resistance = fireResistance;
                 }
             }
+        }else{
+            //Its a monster
+
+
         }
 
 
