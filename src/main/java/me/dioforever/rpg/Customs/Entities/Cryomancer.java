@@ -25,6 +25,8 @@ import java.util.List;
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 import static me.dioforever.rpg.Utils.color;
+import static me.dioforever.rpg.Utils.damagePlayer;
+import static me.dioforever.rpg.Utils.damageEntity;
 
 public class Cryomancer implements Listener {
     /*
@@ -153,7 +155,7 @@ public class Cryomancer implements Listener {
                 for(int i = 0; i<entities.size();i++){
                     if(entities.get(i) instanceof Player){
                         Player victim = (Player) entities.get(i);
-                        Utils.dealDamage(Cryomancer,victim,3.0, "Freeze");
+                        damagePlayer(Cryomancer,victim,30, "Freeze");
                         PotionEffect slowness = new PotionEffect(PotionEffectType.SLOW,25,100,true,false,false);
                         PotionEffect blindness = new PotionEffect(PotionEffectType.BLINDNESS,25,100,true,false,false);
                         victim.addPotionEffect(slowness);
@@ -186,7 +188,7 @@ public class Cryomancer implements Listener {
         for(int i =0;i<nearbyEntites.size();i++){
             if(nearbyEntites.get(i) instanceof Player){
                 Player victim = (Player) nearbyEntites.get(i);
-                Utils.dealDamage(Cryomancer,victim,0.5, "Freeze");
+                damageEntity(Cryomancer,victim,5, "Freeze");
                 //victim.setFreezeTicks(160);
             }
         }
@@ -210,7 +212,7 @@ public class Cryomancer implements Listener {
                         List<Entity> nearby = (List<Entity>) location.getWorld().getNearbyEntities(location,0.1,0.1,0.1);
                         for(int k=0;k<nearby.size();k++){
                             Entity entity = nearby.get(k);
-                            Utils.dealDamage(Cryomancer,entity,15.0,"freeze");
+                            damageEntity(Cryomancer,entity,15,"freeze");
                             if(entity instanceof Player){
                                 Player p = (Player) entity;
                                 p.sendMessage("Emotional DAMAGE");
