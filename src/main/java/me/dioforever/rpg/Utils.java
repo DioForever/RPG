@@ -1,5 +1,6 @@
 package me.dioforever.rpg;
 
+import me.dioforever.rpg.files.CCLeft;
 import me.dioforever.rpg.files.CCSkills;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
@@ -60,8 +61,17 @@ public class Utils {
 
     public static void damagePlayer(Entity damager, Player victim, int damage, String cause){
             //Check his stats and his skills
+            String nick = victim.getName();
             double resistance = getFireResistance(victim);
-            victim.damage(((double)damage/5)-resistance);
+            double damageFinal = damage-resistance;
+            victim.damage(0.5);
+            if(damage-resistance<=0)damageFinal=0;
+            if(victim.isDead())return;
+            int HP = CCLeft.get().getInt(nick+".HP");
+            CCLeft.get().set(nick+".HP",HP-damageFinal);
+            int HPNew = CCLeft.get().getInt(nick+".HP");
+            if(HPNew/5<=0)victim.setHealth(0);
+            else victim.setHealth(HPNew/5);
 
 
     }

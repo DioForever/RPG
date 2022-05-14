@@ -18,6 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
+import org.bukkit.util.Vector;
 
 import java.lang.reflect.Modifier;
 import java.util.HashMap;
@@ -99,25 +100,27 @@ public class Cryomancer implements Listener {
         new BukkitRunnable() {
             int cooldownRimeFrost = 63;
             int cooldownColdSnap = 10;
+            int cooldownMarkOfFrost = 3;
             boolean coldSnap = false;
             @Override
             public void run() {
                 if(!Cryomancer.isDead()){
                         RimeOfWinter(Cryomancer);
+                        //Mark of Frost
+                    if(cooldownMarkOfFrost!=0)cooldownMarkOfFrost--;
+                    else MarkOfFrost(Cryomancer);
+
                         //Rime of Frost
-                    if(cooldownRimeFrost!=0){
-                        //not yet
-                        cooldownRimeFrost--;
-                    }else{
+                    if(cooldownRimeFrost!=0)cooldownRimeFrost--;
+                    else{
                         //Can cast it
                         cooldownRimeFrost=63;
                         RimeOfFrost(Cryomancer);
                     }
                     //--Rime of Frost
                     //Cold Snap
-                    if(!(cooldownColdSnap<=0)){
-                        cooldownColdSnap--;
-                    }else{
+                    if(!(cooldownColdSnap<=0))cooldownColdSnap--;
+                        else{
                         //Check if there is a player to attack
                         List<Entity> nearby =Cryomancer.getNearbyEntities(4,4,4);
                         for (Entity entity : nearby) {
@@ -213,12 +216,12 @@ public class Cryomancer implements Listener {
                         location.add(x, y, z);
                         Particle.DustOptions dustOptions = new Particle.DustOptions(Color.WHITE,0.8F);
                         Cryomancer.getWorld().spawnParticle(Particle.REDSTONE,location,1,dustOptions);
-                        List<Entity> nearby = (List<Entity>) location.getWorld().getNearbyEntities(location,0.1,0.1,0.1);
+                        List<Entity> nearby = (List<Entity>) location.getWorld().getNearbyEntities(location,0.05,0.05,0.05);
                         for(int k=0;k<nearby.size();k++){
                             Entity entity = nearby.get(k);
-                            damageEntity(Cryomancer,entity,15,"freeze");
                             if(entity instanceof Player){
                                 Player p = (Player) entity;
+                                damagePlayer(Cryomancer,p,30,"ice");
                                 p.sendMessage("Emotional DAMAGE");
                             }
                         }
@@ -233,8 +236,20 @@ public class Cryomancer implements Listener {
         System.out.println("Cold Snap");
 
     }
-    public static void MarkofFrost(Stray Cryomancer){
-
+    public static void MarkOfFrost(Stray Cryomancer){
+            //Get players nearby, 20,20,20
+        List<Entity> nearby = Cryomancer.getNearbyEntities(20,20,20);
+        for (Entity entity:nearby
+             ) {
+            if(entity instanceof  Player){
+                Player p = (Player) entity;
+                //Now shoot them with the beam
+                for (double t=0; t < 16; t+=1){ //Creates a for loop that loops 15 times
+                    Location loc = Cryomancer.getLocation(); // Gets the players location
+                    Vector direction = loc.getDirection();
+                }
+            }
+        }
     }
     public static void GlacialWreath(Stray Cryomancer){
 
